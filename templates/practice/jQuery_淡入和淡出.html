@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery_淡入和淡出</title>
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<button id = "danru">点击，淡入</button>
+<button id = "danchu">点击，淡出</button>
+<button id = "danru_or_danchu">淡入or淡出</button>
+<button id = "diff_opacity">点我，不透明度</button>
+<div>
+    <p id = "p1" style = "display:none">段落</p>
+    <p id = "p2" style = "display:none">段落</p>
+    <p id = "p3" style = "display:none">段落</p>
+    <p id = "p4">段落</p>
+    <p id = "p5">段落</p>
+    <p id = "p6">段落</p>
+    <p id = "p7">段落</p>
+    <p id = "p8">段落</p>
+    <p id = "p9">段落</p>
+</div>
+<div id="div1" style="width:80px;height:80px;background-color:red;"></div><br>
+<div id="div2" style="width:80px;height:80px;background-color:green;"></div><br>
+<div id="div3" style="width:80px;height:80px;background-color:blue;"></div>
+
+<script>
+    $(function () {
+        //淡入
+        $("#danru").click(function () {
+            $("#p1").fadeIn();
+            $("#p2").fadeIn("slow");
+            $("#p3").fadeIn(3000);
+        });
+        //淡出
+        $("#danchu").click(function () {
+            $("#p4").fadeOut();
+            $("#p5").fadeOut("slow");
+            $("#p6").fadeOut(3000);
+        });
+        //淡入淡出
+        $("#danru_or_danchu").click(function () {
+            $("#p7").fadeToggle();
+            $("#p8").fadeToggle("slow");
+            $("#p9").fadeToggle(3000);
+        });
+        //fadeTo() 方法允许渐变为给定的不透明度（值介于 0 与 1 之间）
+        $("#diff_opacity").click(function () {
+            $("#div1").fadeTo("slow",0.15);
+            $("#div2").fadeTo(2000,0.4);
+            $("#div3").fadeTo("fast",0.7);
+        });
+    })
+</script>
+</body>
+</html>

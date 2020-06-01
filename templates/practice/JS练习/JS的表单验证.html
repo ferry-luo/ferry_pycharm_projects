@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS的表单验证</title>
+</head>
+<body>
+<!--onsubmit，当表单提交时，执行 JavaScript-->
+<form name = "name_form" action = "/the_love_between_lfl_and_pty" onsubmit = "return judge_name_form()" method = "post">
+    姓：<input type = "text" name = "firstname_in"><br>
+    名：<input type = "text" name = "lastname_in"><br>
+    <input type = "submit" value = "提交">
+</form>
+<script>
+    function judge_name_form(){
+        var x1 = document.forms["name_form"]["firstname_in"].value;
+        var x2 = document.forms["name_form"]["lastname_in"].value;
+        //第二种写法
+        //var x1 = document.name_form.firstname_in.value;
+        //var x2 = document.name_form.lastname_in.value;
+        if(x1 == "" || x2 == ""){
+            window.alert("姓和名必须都填写");
+            return false;//当代码执行到return语句时，函数返回一个结果就结束运行了，return后面的语句根本不会执行。
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts 实例</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        series: {
+            type: 'sunburst',   //旭日图
+            data: [{
+                name: 'A',
+                value: 10,
+                children: [{
+                    value: 3,
+                    name: 'A1'
+                }, {
+                    value: 5,
+                    name: 'A2'
+                }]
+            }, {
+                name: 'B',
+                children: [{
+                    name: 'B1',
+                    value: 4
+                }, {
+                    name: 'B2',
+                    value: 2
+                }]
+            }, {
+                name: 'C',
+                value: 3
+            }]
+        }
+    };
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>

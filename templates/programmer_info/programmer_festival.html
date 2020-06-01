@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>程序员节日快乐！</title>
+</head>
+<body background="/static/images/星星背景_019.gif">
+<div align="center">
+    <h1 class="text" style="color:hotpink">欢迎来到本网站!</h1>
+    <h2 class="text" style="color:hotpink">祝公司的各位程序员节日快乐！</h2>
+    <h2 class="text" style="color:hotpink">我们需要得知您的姓名、身份证号</h2>
+    <a style="color:green;">姓名：</a><input id="ename_id" placeholder="请输入您的姓名" value="">
+    <a style="color:green;">身份证号：</a><input id="user_id" placeholder="请输入您的身份证号" value="">
+    <br>
+    <button style="height:30px;width:100px;color:deeppink" onclick="judge1_person()">惊喜1</button>
+    <button style="height:30px;width:100px;color:deeppink" onclick="judge2_person()">惊喜2</button>
+    <button style="height:30px;width:100px;color:deeppink" onclick="judge3_person()">惊喜3</button>
+    <p id="judge" style="color:yellow;font-family:华文行楷;font-size:22px;"></p>
+</div>
+<div align="center" style="float:bottom;">
+    <p style="color:yellow;font-family:华文行楷;font-size:20px;">温馨提示：只有十八岁及以上的程序员才能进一步浏览惊喜网页。</p>
+    <p style="color:yellow;font-family:'Times New Roman';font-size:20px;">copyright@Ferry</p>
+</div>
+<script>
+    function judge1_person(){
+        var name = document.getElementById("ename_id").value;
+
+        var card_id = document.getElementById("user_id").value;
+
+        var arr_card_id = card_id.split('');
+
+        var arr_card_year = arr_card_id[6] + arr_card_id[7] + arr_card_id[8] + arr_card_id[9];
+
+        var int_card_year = parseInt(arr_card_year);
+
+        var current_time = new Date();
+        var current_year = current_time.getFullYear();
+
+        var year_different = current_year - int_card_year;
+
+        console.log("用户输入的原始身份证号信息为："+card_id);
+        console.log("用户输入的原始身份证号信息的数据类型为："+typeof card_id);
+
+        if(name == "" || card_id==""){
+            window.alert("您有信息未输入，请您全部输入完。")
+        }
+        if(card_id.length!=18){
+            window.alert("您输入的身份证号不正确，请检查后重新输入。")
+        }
+        if(card_id.length == 18 && year_different>=18){
+            window.location.href = "https://w.meituan.com/s/waimai?mt_share_id=k244uu4v1n33&url=http%3A%2F%2Fi.waimai.meituan.com%2Fexternal%2Fpoi%2F869757839590790%3Futm_source%3D5913%26amp%3Bwmi_from%3Dcpoiinfo%26amp%3Buser_id%3D1232955098%26utm_fromapp%3Dcopy";
+        }
+        else if(year_different<18){
+            var r="您还未成年，不能进一步浏览惊喜。不要灰心，我们会一直等到您成年。";
+            document.getElementById("judge").innerHTML=r;
+        }
+    }
+
+    function judge2_person(){
+        var name = document.getElementById("ename_id").value;
+
+        var card_id = document.getElementById("user_id").value;
+
+        var arr_card_id = card_id.split('');
+
+        var arr_card_year = arr_card_id[6] + arr_card_id[7] + arr_card_id[8] + arr_card_id[9];
+
+        var int_card_year = parseInt(arr_card_year);
+
+        var current_time = new Date();
+        var current_year = current_time.getFullYear();
+
+        var year_different = current_year - int_card_year;
+
+        console.log("用户输入的原始身份证号信息为："+card_id);
+        console.log("用户输入的原始身份证号信息的数据类型为："+typeof card_id);
+
+        if(name == "" || card_id==""){
+            window.alert("您有信息未输入，请您全部输入完。")
+        }
+        if(card_id.length!=18){
+            window.alert("您输入的身份证号不正确，请检查后重新输入。")
+        }
+        if(card_id.length == 18 && year_different>=18){
+            window.location.href = "https://w.meituan.com/s/waimai?mt_share_id=k244vwo5eaie&url=http%3A%2F%2Fi.waimai.meituan.com%2Fexternal%2Fpoi%2F873189518411551%3Futm_source%3D5913%26amp%3Bwmi_from%3Dcpoiinfo%26amp%3Buser_id%3D1232955098%26utm_fromapp%3Dcopy";
+        }
+        else if(year_different<18){
+            var r="您还未成年，不能进一步浏览惊喜。不要灰心，我们会一直等到您成年。";
+            document.getElementById("judge").innerHTML=r;
+        }
+    }
+
+    function judge3_person(){
+        var name = document.getElementById("ename_id").value;
+
+        var card_id = document.getElementById("user_id").value;
+
+        var arr_card_id = card_id.split('');
+
+        var arr_card_year = arr_card_id[6] + arr_card_id[7] + arr_card_id[8] + arr_card_id[9];
+
+        var int_card_year = parseInt(arr_card_year);
+
+        var current_time = new Date();
+        var current_year = current_time.getFullYear();
+
+        var year_different = current_year - int_card_year;
+
+        console.log("用户输入的原始身份证号信息为："+card_id);
+        console.log("用户输入的原始身份证号信息的数据类型为："+typeof card_id);
+
+        if(name == "" || card_id==""){
+            window.alert("您有信息未输入，请您全部输入完。")
+        }
+        if(card_id.length!=18){
+            window.alert("您输入的身份证号不正确，请检查后重新输入。")
+        }
+        if(card_id.length == 18 && year_different>=18){
+            window.location.href = "https://w.meituan.com/s/waimai?mt_share_id=k244wi6bn0un&url=http%3A%2F%2Fi.waimai.meituan.com%2Fexternal%2Fpoi%2F859600241918905%3Futm_source%3D5913%26amp%3Bwmi_from%3Dcpoiinfo%26amp%3Buser_id%3D1232955098%26utm_fromapp%3Dcopy";
+        }
+        else if(year_different<18){
+            var r="您还未成年，不能进一步浏览惊喜。不要灰心，我们会一直等到您成年。";
+            document.getElementById("judge").innerHTML=r;
+        }
+    }
+</script>
+</body>
+</html>

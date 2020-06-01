@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+<h2>JSON.stringify 将删除对象中的函数</h2>
+
+<p id="demo"></p>
+
+<script>
+
+    var obj = {
+        "name": "Runoob",
+        "alexa": function () {
+            return 10000;
+        },
+        "site": "www.runoob.com"
+    };
+    //JSON.stringify() 删除 JavaScript 对象的函数，包括 key 和 value。
+    var myJSON = JSON.stringify(obj);
+    document.getElementById("demo").innerHTML = myJSON;
+
+</script>
+
+</body>
+</html>

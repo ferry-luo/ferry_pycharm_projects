@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>边框</title>
+    <style>
+        p{
+            border-top-style:dotted;
+            border-bottom-style:dotted;
+            border-left-style:solid;
+            border-right-style:solid;
+        }
+        p.one{
+            /*border-style:solid;*/
+            /*border-width:5px;*/
+            /*border-color:red;*/
+            border:dotted 5px red;
+        }
+        p.two{
+            border-style:dotted;
+            border-width:3px;
+            border-color:green;
+        }
+        p.three{
+            border-style:dashed;
+            border-width:1px;
+            border-color:lightskyblue;
+        }
+    </style>
+</head>
+<body>
+<p>左右边界一个样式、上下边界一个样式</p>
+<p class = "one">段落1</p>
+<p class = "two">段落2</p>
+<p class = "three">段落3</p>
+</body>
+</html>

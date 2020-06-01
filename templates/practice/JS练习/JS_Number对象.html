@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_Number对象</title>
+</head>
+<body>
+<p id="demo"></p>
+
+<script>
+    //浮点运算并不是百分百准确
+    var x = 0.2 + 0.1;
+    document.write(x);
+
+    var y = 0xFF;
+    var z = 128;
+    document.write(y.toString(10));
+    document.write(z.toString(2));
+    //当数字运算结果超过了JavaScript所能表示的数字上限（溢出），结果为一个特殊的无穷大（infinity）值，在JavaScript中以Infinity表示。
+    // 同样地，当负数的值超过了JavaScript所能表示的负数范围，结果为负无穷大，在JavaScript中以-Infinity表示
+    /*
+    var a = 2;
+    while(a != Infinity){
+        a = a * a;
+    }
+    var b = -2;
+    while(b != -Infinity){
+        b = b * b;
+    }
+    */
+    var x1 = 123;
+    var x2 = new Number(123);
+    document.write("x1的类型是" + typeof(x1));
+    document.write("x2的类型是" + typeof(x2));
+    document.getElementById("demo").innerHTML = (x1 === x2);
+    if(isNaN(x2)){
+        document.write("x2不是数字");
+    }
+
+    var y1 = "22.5";
+    document.write("y1转成浮点型数，为" + Number.parseFloat(y1));
+    document.write("y1转成整型数，为" + Number.parseInt(y1));
+    document.write("y1四舍五入保留两位小数，为" + Number.parseFloat(y1).toFixed(2));
+
+    var y2 = 30;
+    if(Number.isInteger(y2)){
+        document.write("y2是整数");
+    }
+</script>
+</body>
+</html>

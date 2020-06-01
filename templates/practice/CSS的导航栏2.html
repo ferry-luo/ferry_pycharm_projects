@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导航栏</title>
+    <style>
+        ul{
+            /*移除列表前的小标志*/
+            list-style-type:none;
+            /*由于会默认有边距和填充，看上去不美观，故手动去掉*/
+            margin:0;
+            padding:0;
+            /*设置导航栏的宽度和高度*/
+            width:100px;
+            height:100px;
+            /*设置导航栏的背景颜色*/
+            background-color:lightskyblue;
+        }
+        li a{
+            /*以“块”呈现，就不会显得臃肿*/
+            display:block;
+            color:white;
+            /*默认情况下填充是0，不够美观。让各个a元素填充。备注：简约写法，按左、上、右、下顺时针，如padding: 8px 16px*/
+            padding-left:8px;
+            padding-top:8px;
+            /*默认情况下，链接是带下划线的，这里是用导航栏，有下划线则不太美观，将其去掉*/
+            text-decoration:none;
+        }
+        /*使用后代选择器，li元素下所有a元素，鼠标移动到对应位置颜色变更*/
+        li a:hover{
+            background-color:burlywood;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a href = "#home">首页</a></li>
+    <li><a href = "#news">新闻</a></li>
+    <li><a href = "#contact">联系</a></li>
+</ul>
+</body>
+</html>

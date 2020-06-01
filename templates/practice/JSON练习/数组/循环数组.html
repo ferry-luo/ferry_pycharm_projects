@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+<p>你可以使用 for-in 来访问数组:</p>
+
+<p id="demo"></p>
+
+<script>
+
+    var myObj, i, x = "";
+    myObj = {
+        "name": "网站",
+        "num": 3,
+        "sites": ["Google", "Runoob", "Taobao"]
+    };
+
+    for(i in myObj.sites){
+        x += myObj.sites[i] + "<br>";
+    }
+
+    document.getElementById("demo").innerHTML = x;
+
+</script>
+
+</body>
+</html>

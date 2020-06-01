@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <style>
+        #grad1 {
+            height: 150px;
+            width: 200px;
+            background-color: red; /* 浏览器不支持的时候显示 */
+            /*径向渐变 - 颜色结点均匀分布（默认情况下）*/
+            background-image: radial-gradient(red,green,blue);
+        }
+        #grad2 {
+            height: 150px;
+            width: 200px;
+            background-color: red; /* 浏览器不支持的时候显示 */
+            /*径向渐变 - 颜色结点不均匀分布*/
+            background-image: radial-gradient(red 5%,green 15%,blue 30%);
+        }
+        #grad3 {
+            height: 150px;
+            width: 200px;
+            background-color: red; /* 浏览器不支持的时候显示 */
+            /*椭圆形 ellipse（默认*/
+            background-image: radial-gradient(ellipse,red 5%,green 15%,blue 30%);
+        }
+        #grad4 {
+            height: 150px;
+            width: 200px;
+            background-color: red; /* 浏览器不支持的时候显示 */
+            /*圆形 circle*/
+            background-image: radial-gradient(circle,red 5%,green 15%,blue 30%);
+        }
+    </style>
+</head>
+<body>
+
+<h3>径向渐变 - 颜色结点均匀分布</h3>
+<div id="grad1"></div>
+<br>
+<div id="grad2"></div>
+<br>
+<div id="grad3"></div>
+<br>
+<div id="grad4"></div>
+
+<p><strong>注意：</strong> Internet Explorer 9 及之前的版本不支持渐变。</p>
+
+</body>
+</html>

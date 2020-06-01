@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+        img {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            width: 40px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>缩略图</h2>
+<p>我们使用 border 属性来创建缩略图。</p>
+
+<img id="my_photo" src="../../../../static/images/花朵.jpg" alt="Paris">
+
+<script>
+    //鼠标移入时显示大尺寸图
+    $(function () {
+        $('#my_photo').mouseenter(function () {
+            $('#my_photo').css("width","400px");
+            $('#my_photo').css("height","300px");
+        })
+    });
+    //鼠标移出时显示小尺寸图
+    $(function () {
+        $('#my_photo').mouseleave(function () {
+            $('#my_photo').css({
+                "width": "40px",
+                "height": "30px",
+            });
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        div {
+            transition: all linear 0.5s;
+            background-color: lightblue;
+            height: 100px;
+            width: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .ng-hide {
+            height: 0;
+            width: 0;
+            background-color: transparent;
+            top: -200px;
+            left: 200px;
+        }
+
+    </style>
+    <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+<!--    AngularJS 使用动画需要引入 angular-animate.min.js 库。-->
+    <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular-animate.min.js"></script>
+</head>
+<!--ngAnimate 模型并不能使 HTML 元素产生动画，但是 ngAnimate 会监测事件，类似隐藏显示 HTML 元素 ，如果事件发生 ngAnimate 就会使用预定义的 class 来设置 HTML 元素的动画。-->
+<body ng-app="ngAnimate">
+
+<h1>隐藏 DIV: <input type="checkbox" ng-model="myCheck"></h1>
+<!--这里用到AngularJS 添加/移除 class 的指令中的ng-hide-->
+<div ng-hide="myCheck"></div>
+
+</body>
+</html>

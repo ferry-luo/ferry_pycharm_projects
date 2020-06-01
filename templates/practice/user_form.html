@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>身份识别</title>
+    <style>
+        .user_form{
+            border-radius:5px;
+            padding:20px;
+            background-color: #cfcfcf;
+        }
+        input[type = "text"]{
+            width:270px;
+            /*//block,此元素显示为块级元素，元素前后有换行符*/
+            display:block;
+            padding:15px 15px;
+            margin:10px 608px;
+            border:1px solid lightblue;
+            border-radius:3px;
+        }
+        input[type = "number"]{
+            width:270px;
+            /*//block,此元素显示为块级元素，元素前后有换行符*/
+            display:block;
+            padding:15px 15px;
+            margin:10px 608px;
+            border:1px solid lightblue;
+            border-radius:3px;
+        }
+        select{
+            width:300px;
+            display:block;
+            padding:15px 15px;
+            margin:10px 608px;
+            border:1px solid lightblue;
+            border-radius:3px;
+        }
+        label,input[type = "radio"]{
+            margin:10px 608px;
+            /*粗体*/
+            font-weight:bold;
+            /*斜体*/
+            font-style:oblique;
+        }
+        input[type = "submit"]{
+            width:135px;
+            color:white;
+            background-color: #4CAF50;
+            display:block;
+            padding:5px 5px;
+            margin:10px 675px;
+            border:none;
+            letter-spacing:2em;
+            text-indent:2em;
+            border-radius:2px;
+            cursor:pointer;
+        }
+        input[type = "submit"]:hover{
+            background-color: #6affe9;
+        }
+    </style>
+</head>
+<body>
+<div class = "user_form">
+    <form name = "sex_choice_form" action = "/go_yellow_website" method = "get" target = "_blank">
+        <label>名</label>
+        <input id = "first_name" type = "text" placeholder = "请输入名">
+        <label>姓</label>
+        <input id = "last_name" type = "text" placeholder = "请输入姓">
+        <label>身份证号</label>
+        <input id = "id_card" type = "text" placeholder = "请输入18位身份证号">
+        <label>年龄</label>
+        <input type = "number" id = "age" min = "1" max = "120" required = "required">
+        <p id = "mes" style = "color:yellow;font-size:22px;"></p>
+        <label>喜好的颜色</label>
+        <br>
+        <!--对于单选按钮，type的属性值总是"radio"-->
+        <!--for 属性规定 label 与哪个表单元素绑定。-->
+
+        <input type = "radio" id = "yellow" name = "like_color" value = "yellow">
+        <label for = "yellow">Yellow</label>
+
+        <input type = "radio" id = "green" name = "like_color" value = "green">
+        <label for = "green">Green</label>
+
+        <label>性别</label>
+        <select name = "sex_choice">
+            <option>-请选择-</option>
+            <option>男</option>
+            <option>女</option>
+        </select>
+        <input type = "submit" value = "提交" onclick = "judge_identity()">
+    </form>
+    <p id = "show_ban_word" class = "ban_word"></p>
+</div>
+</body>
+<script>
+    function judge_identity(){
+        //获取名
+        var first_name = document.getElementById("first_name").value;
+        //获取姓
+        var last_name = document.getElementById("last_name").value;
+        //获取选择的性别
+        var sex = document.sex_choice_form.sex_choice.value;
+        //获取输入的年龄
+        var person_age = document.getElementById("age").value;
+        //获取输入的身份证号(输入框中默认字符串类型)
+        var card = document.getElementById("id_card").value;
+        //将字符串中每一个字符作为一个元素放到数组中
+        var card_arr = card.split("");
+        //身份证号中年份在七八九十位，将数组中相应的元素取出来拼接
+        var card_year = card_arr[6] + card_arr[7] + card_arr[8] + card_arr[9];
+        //得到的年份转成整数
+        var card_year_int = parseInt(card_year);
+        //获取当前时间，再获取完整的4位年份
+        var current_time = new Date();
+        var current_year = current_time.getFullYear();
+        //用当前年份与身份证上年份相减得到的差值，用来判断是否成年
+        var age = current_year - card_year_int;
+
+        //日志
+        console.log("用户输入的身份证号原始信息：" + card);
+
+        //先判断有没有文本信息为空
+        if(first_name == "" || last_name == "" || card == "" || person_age == ""){
+            window.alert("存在信息未输入，请都输入好")
+        }
+        //当文本信息都有输入
+        else{
+            //判断输入的年龄是否合理
+            var age_in = document.getElementById("age");
+            age_in.setCustomValidity("");
+            if(age_in.checkValidity() == false){
+                age_in.setCustomValidity("输入的年龄不在合理范围");
+                document.getElementById("mes").innerHTML = age_in.validationMessage;
+            }
+            //判断身份证号位数
+            if(card.length != 18){
+                window.alert("您输入的身份证号位数不为18，请重新输入")
+            }
+            //当身份证号位数是18
+            else{
+                //判断有没有选择有效性别
+                if(sex == "-请选择-"){
+                window.alert("请您选择有效性别后再提交")
+                }
+                //当选择有效性别
+                else{
+                    //判断有没有成年
+                    if(age >= 18){
+                        //判断是男是女
+                        if(sex == "女"){
+                            //window.location.href = "http://127.0.0.1:8000/amusement"
+                        }
+                        if(sex == "男"){
+                            window.alert("您虽然已成年，但我们不想让男性浏览娱乐网页")
+                        }
+                    }
+                    else{
+                        window.alert("您尚未成年，不可进一步浏览娱乐网页");
+                        document.getElementById("show_ban_word").innerHTML = "不要灰心，我们会一直等到您成年。"
+                    }
+                }
+            }
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX_onreadystatechange</title>
+</head>
+<body>
+<h2 id="demo">使用AJAX修改文本内容</h2>
+<button onclick="my_update()">修改</button>
+
+<script>
+    function my_update() {
+        load_xml_doc("https://www.runoob.com/try/ajax/ajax_info.txt",function () {
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                document.getElementById("demo").innerHTML = xmlhttp.responseText;
+            }
+        });
+    }
+
+    function load_xml_doc(url,func) {
+        if(window.XMLHttpRequest){
+            //所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。
+            // IE7+, Firefox, Chrome, Opera, Safari 代码
+            xmlhttp = new XMLHttpRequest();
+        }
+        else{
+            // IE6, IE5 代码
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        //当请求被发送到服务器时，我们需要执行一些基于响应的任务。每当 readyState 改变时，就会触发 onreadystatechange 事件。
+        xmlhttp.onreadystatechange = func;
+        //open(method,url,async)    async：true（异步）或 false（同步）
+        xmlhttp.open("GET",url,true);
+        xmlhttp.send();
+    }
+</script>
+</body>
+</html>

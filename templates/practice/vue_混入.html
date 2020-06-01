@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_混入</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
+</head>
+<body>
+<div>混入</div>
+
+<script>
+    //当组件使用混入对象时，所有混入对象的选项将被混入该组件本身的选项。
+    var my_mixin = {
+        methods:{
+            say_hello:function(){
+                document.write('hello,ferry' + "<br>");
+            },
+            //如果 methods 选项中有相同的函数名，则 Vue 实例优先级会较高。
+            same_method:function(){
+                document.write('优先级低：相同方法名' + "<br>");
+            }
+        }
+    };
+
+    var vm = new Vue({
+        mixins:[my_mixin],
+        methods:{
+            say_bye:function(){
+                document.write('byebye' + "<br>");
+            },
+            same_method:function (){
+                document.write('优先级高：相同方法名' + "<br>");
+            }
+        }
+    });
+
+    vm.say_hello();
+    vm.say_bye();
+    vm.same_method();
+</script>
+</body>
+</html>

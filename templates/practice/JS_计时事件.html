@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_计时事件</title>
+</head>
+<body>
+<p>页面上显示时钟</p>
+<p id="demo"></p>
+<button onclick="my_stop()">停止</button>
+
+<p>点击第一个按钮等待3秒后出现"Hello"弹框。</p>
+<p>点击第二个按钮来阻止第一个函数运行。（你必须在3秒之前点击它）。</p>
+<button onclick="my_function()">点我</button>
+<button onclick="my_stop_box()">停止弹框</button>
+
+<script>
+    //setInterval() 第一个参数是函数,第二个参数间隔的毫秒数
+    var my_interval = window.setInterval(my_timer,1000);
+    function my_timer() {
+        var d = new Date();
+        //把数组转换为本地字符串
+        var t = d.toLocaleString();
+        document.getElementById("demo").innerHTML = t;
+    }
+
+    function my_stop() {
+        //clearInterval() 方法来停止执行
+        clearInterval(my_interval);
+    }
+
+    function my_function() {
+        my_timeout = setTimeout(function(){
+            alert("hello");
+        },2000);
+    }
+    function my_stop_box() {
+        //clearTimeout() 方法用于停止执行setTimeout()方法的函数代码
+        clearTimeout(my_timeout);
+    }
+</script>
+</body>
+</html>

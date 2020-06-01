@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX_发送请求</title>
+</head>
+<body>
+<button onclick="load_xml_doc_get()">GET请求</button>
+<p id="demo1"></p>
+<button onclick="load_xml_doc_post()">POST请求</button>
+<p id="demo2"></p>
+
+<script>
+    function load_xml_doc_get() {
+        if(window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest();
+        }
+        else{
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                document.getElementById("demo1").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET","https://www.runoob.com/try/ajax/demo_get2.php?fname=Henry&lname=Ford",true);
+        xmlhttp.send();
+    }
+
+    function load_xml_doc_post() {
+        if(window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest();
+        }
+        else{
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        ////当请求被发送到服务器时，我们需要执行一些基于响应的任务。每当 readyState 改变时，就会触发 onreadystatechange 事件。
+        xmlhttp.onreadystatechange = function () {
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                document.getElementById("demo2").innerHTML = xmlhttp.responseText;
+            }
+        };
+        //open(method,url,async)    async：true（异步）或 false（同步）
+        xmlhttp.open("POST","https://member.zjtcn.com/caijia/getMaterialPrice.json",true);
+        //使用 setRequestHeader() 来添加 HTTP 头
+        xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        xmlhttp.send("pageNo=1&pageSize=10&page=1");
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>媒体类型</title>
+    <style>
+        /*当在显示屏*/
+        @media screen{
+            p.diff_media{
+                font-family:宋体;
+                font-size:22px;
+            }
+        }
+        /*当在打印机*/
+        @media print{
+            p.diff_media{
+                font-family:新宋体;
+                font-size:20px;
+            }
+        }
+        p.diff_media{
+            /*粗体*/
+            font-weight:bold;
+            /*变斜*/
+            font-style:oblique;
+            /*字体颜色*/
+            color:orchid;
+        }
+    </style>
+</head>
+<body>
+<p class = "diff_media">你不是真正的快乐</p>
+</body>
+</html>

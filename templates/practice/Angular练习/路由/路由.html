@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS 路由实例 - 菜鸟教程</title>
+    <script src="https://cdn.staticfile.org/angular.js/1.7.0/angular.min.js"></script>
+    <script src="https://cdn.staticfile.org/angular.js/1.7.0/angular-route.min.js"></script>
+</head>
+<body ng-app='routingApp'>
+
+<h2>AngularJS 路由应用</h2>
+<ul>
+    <!--通常我们的 URL 形式为 http://runoob.com/first/page，但在单页 Web 应用中 AngularJS 通过 #! + 标记 实现-->
+    <li><a href="#!/">首页</a></li>
+    <li><a href="#!/computers">电脑</a></li>
+    <li><a href="#!/printers">打印机</a></li>
+    <li><a href="#!/blabla">其他</a></li>
+</ul>
+<!--使用ng-view.这个方法通过使用路由控制，可以方便的实现页面组合。-->
+<div ng-view></div>
+<script type="text/ng-template" id="tt.html">
+    <h1>你好啊</h1>
+    <div ng-app="myApp" ng-controller="formCtrl">
+        <form novalidate>
+            First Name:<br>
+            <input type="text" ng-model="user.firstName"><br>
+            Last Name:<br>
+            <input type="text" ng-model="user.lastName">
+            <br><br>
+            <button ng-click="reset()">RESET</button>
+        </form>
+        <p>form = {{user}}</p>
+        <p>master = {{master}}</p>
+    </div>
+</script>
+<script>
+    //module这个方法能够接受两个参数，第一个是模块的名称，第二个是依赖列表，也就是可以被注入到模块中的对象列表。
+    //将ngRoute模块导入到routingDemoApp模块里，就可以使用ngRoute里的方法了
+    var app = angular.module('routingApp',['ngRoute']);
+
+    app.controller('formCtrl',function ($scope) {
+        $scope.master = {first_name:'ferry',last_name:'luo'};
+        $scope.user = angular.copy($scope.master);
+    });
+    //AngularJS模块可以在被加载和执行之前对模块自身进行配置。
+    //当你需要在AngularJS模块加载之前进行配置，就要用到config。只有提供者(Provider)和常量(constant)才能注入到config中。
+    app.config(['$routeProvider', function ($route) {
+            $route
+                .when('/', {template: '这是首页页面'})
+                .when('/computers', {templateUrl: 't.html'})
+                .when('/printers',{templateUrl:'tt.html'})
+                .otherwise({redirectTo: '/'});  //重定向路由 redirectTo
+        }]);
+    //另一种写法
+    /*
+    app.config(function ($route) {
+        $route
+            .when('/', {template: '这是首页页面'})
+            .when('/computers', {template: '这是电脑分类页面'})
+            .when('/printers', {templateUrl: 'tt.html',controller:'ttControl'})
+            .otherwise({redirectTo: '/'});  //重定向路由 redirectTo
+    })
+    */
+</script>
+</body>
+</html>

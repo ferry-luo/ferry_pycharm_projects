@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_模板语法之v-on</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id = "app">
+    <p>{{message}}</p>
+    <button v-on:click = "reverse_message">反转字符串</button>
+</div>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            message:'apple'
+        },
+        methods:{
+            reverse_message:function(){
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    })
+</script>
+</body>
+</html>

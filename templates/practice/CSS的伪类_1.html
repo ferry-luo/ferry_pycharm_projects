@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪类</title>
+    <style>
+        a.one:link{
+            color:blue;
+        }
+        a.one:visited{
+            color:red;
+        }
+        a.one:hover{
+            color:green;
+        }
+        a.one:active{
+            color:orange;
+        }
+
+        a.two:link{
+            color:blue;
+        }
+        a.two:visited{
+            color:red;
+        }
+        a.two:hover{
+            font-size:150%;
+        }
+        a.two:active{
+            color:orange;
+        }
+
+        a.three:link{
+            color:blue;
+        }
+        a.three:visited{
+            color:red;
+        }
+        a.three:hover{
+            background-color:lightseagreen;
+        }
+        a.three:active{
+            color:orange;
+        }
+
+        a.four:link{
+            color:blue;
+        }
+        a.four:visited{
+            color:red;
+        }
+        a.four:hover{
+            font-family:华文行楷;
+        }
+        a.four:active{
+            color:orange;
+        }
+
+        a.five:link{
+            color:blue;
+        }
+        a.five:visited{
+            color:red;
+        }
+        a.five:hover{
+            /*text-decoration:overline;*/
+            /*text-decoration:underline;*/
+            /*text-decoreation:none;*/
+            text-decoration:line-through;
+        }
+        a.five:active{
+            color:orange;
+        }
+    </style>
+</head>
+<body>
+<p>CSS伪类是用来给选择器添加一些特殊效果。伪类其实是弥补了CSS选择器的不足，用来更方便地获取信息。</p>
+<p>在支持 CSS 的浏览器中，链接的不同状态都可以以不同的方式显示</p>
+<p>
+    注意： 在CSS定义中，a:hover 必须被置于 a:link 和 a:visited 之后，才是有效的。
+
+    注意： 在 CSS 定义中，a:active 必须被置于 a:hover 之后，才是有效的。
+
+    注意：伪类的名称不区分大小写。
+</p>
+<p>
+    <b><a class = "one" href = "http://www.baidu.com" target = "_blank">此链接改变文字颜色</a></b>
+</p>
+<p>
+    <b><a class = "two" href = "http://www.baidu.com" target = "_blank">此链接改变字体大小</a></b>
+</p>
+<p>
+    <b><a class = "three" href = "http://www.baidu.com" target = "_blank">此链接改变背景颜色</a></b>
+</p>
+<p>
+    <b><a class = "four" href = "http://www.baidu.com" target = "_blank">此链接改变字体类型</a></b>
+</p>
+<p>
+   <a class = "five" href = "http://www.baidu.com" target = "_blank">此链接改变文字修饰</a>
+</p>
+<h3>匹配作为任何元素的第一个p元素</h3>
+<p>一些文字</p>
+<p>一些文字</p>
+</body>
+</html>

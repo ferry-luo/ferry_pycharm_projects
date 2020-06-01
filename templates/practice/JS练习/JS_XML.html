@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_XML</title>
+</head>
+<body>
+<h1>XMLHttpRequest 对象</h1>
+
+<button type="button" onclick="load_xml_doc()">获取我收藏的 CD</button>
+<br>
+<table id="demo"></table>
+
+<script>
+    /*
+    当用户点击上面的"获取我收藏的 CD"这个按钮，就会执行 load_xml_doc() 函数。
+
+    load_xml_doc() 函数创建 XMLHttpRequest 对象，添加当服务器响应就绪时执行的函数，并将请求发送到服务器。
+
+    当服务器响应就绪时，会构建一个 HTML 表格，从 XML 文件中提取节点（元素），最后使用 XML 数据的 填充 id="demo" 的表格元素：
+     */
+    function load_xml_doc() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                my_func(xmlhttp);
+            }
+        }
+    }
+    
+    function my_func(xml) {
+        var xmlDoc = xml.responseXML;
+        //th可理解为td基础上加粗
+        var table = "<tr><th>Artist</th><th>Title</th></tr>";
+        var x = xmlDoc.getElementsByTagName("CD");
+        //x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue    获得第一个ARTIST元素的子节点的值
+        for (var i = 0; i < x.length; i++){
+            table += "<tr><td>" +
+            x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+            "</td><td>" +
+            x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+            "</td></tr>";
+        }
+        document.getElementById("demo").innerHTML = table;
+    }
+</script>
+</body>
+</html>

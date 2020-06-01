@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/res/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/res/layui/css/layui.css">
+</head>
+<body>
+<table class="layui-table" id="event_table">
+    <colgroup>
+        <col width="150">
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>商品编码</th>
+        <th>商品名称</th>
+        <th>商品单价（元）</th>
+        <th>是否包邮</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{result.data.0.shop_code}}</td>
+        <td>{{result.data.0.shop_name}}</td>
+        <td>{{result.data.0.shop_price}}</td>
+        <td>{{result.data.0.free_shipping}}</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

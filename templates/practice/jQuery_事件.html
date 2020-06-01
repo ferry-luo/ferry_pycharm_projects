@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery_事件</title>
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <p id = "p1">段落</p>
+    <p id = "p2">段落</p>
+    <p id = "p3">段落</p>
+    <p id = "p4">段落</p>
+    <p id = "p5">段落</p>
+    <p id = "p6">段落</p>
+    <p id = "p7">段落</p>
+    <p id = "p8">段落</p>
+</div>
+<div>
+    姓名：<input type = "text"><br>
+    邮箱：<input type = "text"><br>
+</div>
+
+<script>
+    $(function(){
+        //click() 方法是当按钮点击事件被触发时会调用一个函数。
+        $("#p1").click(function () {
+            $(this).hide();
+        });
+        //当双击元素时，会发生 dblclick 事件。
+        $("#p2").dblclick(function() {
+            $(this).hide();
+        });
+        //当鼠标指针穿过元素时，会发生 mouseenter 事件。
+        $("#p3").mouseenter(function () {
+            alert("移到了id = 'p3'的元素上");
+        });
+        //当鼠标指针离开元素时，会发生 mouseleave 事件。
+        $("#p4").mouseleave(function () {
+            alert("您的鼠标离开了段落");
+        });
+        //当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
+        $("#p5").mousedown(function () {
+            alert("您的鼠标在该段落上按下");
+        });
+        //当在元素上松开鼠标按钮时，会发生 mouseup 事件。
+        $("#p6").mouseup(function () {
+            alert("您的鼠标在段落上松开");
+        });
+        //hover()方法用于模拟光标悬停事件。
+        //当鼠标移动到元素上时，会触发指定的第一个函数(mouseenter);当鼠标移出这个元素时，会触发指定的第二个函数(mouseleave)。
+        $("#p7").hover(
+            function (){
+                alert("鼠标悬停在该段落");
+            },
+            function () {
+                alert("现在鼠标离开了该段落");
+            }
+        );
+        //当元素获得焦点时，发生 focus 事件。
+        $("input").focus(function () {
+            $(this).css("background-color","#cccccc")
+        });
+        //当元素失去焦点时，发生 blur 事件。
+        $("input").blur(function () {
+            $(this).css("background-color","#ffffff")
+        });
+    })
+</script>
+</body>
+</html>

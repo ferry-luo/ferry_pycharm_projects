@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .set_disabled {
+            opacity: 0.6;
+            /*看起来像 "disabled" 属性效果*/
+            cursor: not-allowed;
+        }
+
+        #sth {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h2>禁用按钮</h2>
+<p>我们可以使用 opacity 属性为按钮添加透明度 (看起来类似 "disabled" 属性效果，实际上并没有disabled属性效果：例如，我点击它，会调用方法展示一句话)。</p>
+
+<button class="button">正常按钮</button>
+<button class="button set_disabled" onclick="show_sth()">禁用按钮</button>
+<p id="sth">hello,ferry</p>
+
+<script>
+    $(function () {
+        $('.set_disabled').click(function () {
+            $('#sth').css({
+                "display": "block"
+            })
+        })
+    })
+</script>
+</body>
+</html>

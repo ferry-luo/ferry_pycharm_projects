@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片廊</title>
+    <style>
+        div.img{
+            /*外边距，会发现相邻图片间隔5个像素*/
+            margin:5px;
+            /*边框*/
+            border:10px solid burlywood;
+            /*内边距填充，可以通过设为0和大于0（例如20px）看到效果：图片本身与边框有一定距离*/
+            padding:20px;
+            /*浮动*/
+            float:left;
+            /*宽度*/
+            width:180px;
+            /*当鼠标移动至图片之前，设置的图片透明度*/
+            opacity:0.4;
+        }
+        /*当鼠标移动至图片*/
+        div.img:hover{
+            /*边框的颜色变为红色*/
+            border:1px solid red;
+            /*透明度变为1，也就是原图*/
+            opacity:1;
+        }
+        /*用后代选择器，这里才是真正的图片本身，设它的宽度为，高度自适应*/
+        div.img img{
+            width:100%;
+            height:auto;
+        }
+        /*让描述文字的内边距为15px，文本居中对齐*/
+        p.img_desc{
+            padding:15px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+<div class = "img">
+    <a href = "http://www.baidu.com" target = "_blank">
+        <img src = "/static/images/小依.jpg">
+    </a>
+    <p class = "img_desc">这是小依</p>
+</div>
+<div class = "img">
+    <a href = "http://www.baidu.com" target = "_blank">
+        <img src = "/static/images/小欣.jpg">
+    </a>
+    <p class = "img_desc">这是小欣</p>
+</div>
+<div class = "img">
+    <a href = "http://www.baidu.com" target = "_blank">
+        <img src = "/static/images/小甜.jpg">
+    </a>
+    <p class = "img_desc">这是小甜</p>
+</div>
+</body>
+</html>

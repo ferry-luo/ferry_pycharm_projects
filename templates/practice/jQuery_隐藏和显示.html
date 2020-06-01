@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery_隐藏和显示</title>
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <p id = "p1">段落1</p>
+    <p id = "p8">段落8</p>
+</div>
+<button id = "hide">隐藏</button>
+<button id = "show">显示</button>
+<button>显示/隐藏</button>
+
+<script>
+    $(function () {
+        /*
+        $(selector).hide(speed,callback);
+        $(selector).show(speed,callback);
+        可选的 speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+        可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+         */
+        $("#hide").click(function () {
+            $("#p1").hide(1000);
+        });
+        $("#show").click(function () {
+            $("#p1").show(1000);
+        });
+        //使用 toggle() 方法来切换 hide() 和 show() 方法。
+        $("button").click(function () {
+            $("#p8").toggle();
+        })
+    })
+</script>
+</body>
+</html>

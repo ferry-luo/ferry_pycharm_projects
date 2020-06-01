@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS的this关键字</title>
+</head>
+<body>
+<p>本实例演示了this指向person对象</p>
+<p id = "d1"></p>
+<p>指向了 student2，即便它是 studnet1 的方法</p>
+<p id = "d2"></p>
+<script>
+    var person = {
+        first_name:"ferry",
+        last_name:"luo",
+        card_id:285828,
+        full_name:function(){
+            return this.first_name + " " + this.last_name;//this.first_name 表示 person 对象的 first_name 属性。
+        }
+    };
+    document.getElementById("d1").innerHTML = person.full_name();
+
+    var student1 = {
+        ming:"jiegao",
+        xing:"liu",
+        full_ch_name:function(){
+            return this.ming + " " + this.xing;
+        }
+    };
+    var student2 = {
+        ming:"zhonghua",
+        xing:"shu"
+    };
+    var x = student1.full_ch_name.call(student2);
+    document.getElementById("d2").innerHTML = x;
+</script>
+</body>
+</html>

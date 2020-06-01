@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>react组件组合使用</title>
+    <script src = "https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src = "https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src = "https://cdn.bootcss.com/prop-types/15.6.1/prop-types.js"></script>
+    <script src = "https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id = "example"></div>
+
+<script type = "text/babel">
+//    需求：将新增的值添加到列表首个
+//问题：数据保存在哪个组件内：
+//看数据是某个组件需要（给它），还是某些组件需要（给共同的父组件）
+//问题：需要在子组件中改变父组件中的状态
+//子组建中不能直接改变父组件的状态
+//状态在哪个组件，更新状态的行为就应该定义在哪个组件
+//解决：父组件定义函数，传递给子组件，子组件调用
+
+/*
+组建化编写功能的流程
+1.拆分组件
+2.实现静态组件（只有静态界面，没有动态数据和交互）
+3.实现动态组件
+    （1）实现初始化数据动态显示
+    （2）实现交互功能：从绑定事件监听开始
+*/
+    class App extends React.Component{
+        constructor(props){
+            super(props);
+            //初始化状态 state是组件的“私有属性（或者是局部属性）”,由组件本身完全控制
+            this.state = {
+                todos:['吃饭','睡觉','敲代码']
+            };
+            this.add_to_do = this.add_to_do.bind(this);
+        }
+
+        add_to_do(todo){
+            const {todos}  = this.state;
+            //unshift() 方法可向数组的开头添加一个或更多元素，将已经存在的元素顺次地移到较高的下标处，以便留出空间。并返回新的长度。
+            //提示：要把一个或多个元素添加到数组的尾部，请使用 push() 方法。
+            todos.unshift(todo);
+            //更新状态  需要用setState
+            this.setState({todos});
+        }
+
+
+        render(){
+            return(
+                    //注意：只能有一个根标签，例如写两个div是不行的
+                    <div>
+                        <h1>simple todo list</h1>
+                        <Add count = {this.state.todos.length} add_to_do = {this.add_to_do}></Add>
+                        <List todos = {this.state.todos}></List>
+                    </div>
+            )
+        }
+    }
+
+    class Add extends React.Component{
+        constructor(props){
+            super(props);
+            this.add = this.add.bind(this);
+        }
+
+        add(){
+            //1.读取输入的数据
+            const todo = this.todoInput.value.trim();   //trim可去除两边的空格符
+            //2.检查合法性
+            if(!todo){
+                return
+            }
+            //3.若合法，则添加
+            this.props.add_to_do(todo);
+            //4.清除输入框中内容
+            this.todoInput.value = '';
+        }
+        render(){
+            return(
+                    <div>
+                        <input type = "text" ref = {input => this.todoInput = input}></input>
+                        <button onClick = {this.add}>add #{this.props.count+1}</button>
+                    </div>
+            )
+        }
+    }
+    //指定属性值的类型和必要性
+    Add.propTypes = {
+        count:PropTypes.number.isRequired,
+        add_to_do:PropTypes.func.isRequired,
+    };
+
+    class List extends React.Component{
+        render(){
+            //在父组件中设置 state， 并通过在子组件上使用 props 将其传递到子组件上。
+            const {todos} = this.props;
+            return(
+                    <ul>
+                        {
+                            //map方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。不会改变原始数组。
+                            todos.map((todo,index) => <li key = {index}>{todo}</li>)
+                        }
+                    </ul>
+            )
+        }
+    }
+    //指定属性值的类型和必要性
+    List.propTypes = {
+        todos:PropTypes.array.isRequired,
+    };
+
+    ReactDOM.render(<App/>,document.getElementById("example"));
+</script>
+</body>
+</html>

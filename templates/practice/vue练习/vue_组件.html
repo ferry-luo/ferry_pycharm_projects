@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_组件</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id = "app">
+    <runoob></runoob>
+</div>
+
+<script>
+    //注册
+    Vue.component('runoob',{
+        template:'<h1>用户自定义的组件</h1>'
+    });
+    //创建根实例
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>

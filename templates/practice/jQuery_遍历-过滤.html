@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery_遍历-过滤</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<h1>欢迎访问我的主页</h1>
+<div>
+	<p>这是 div 中的一个段落。</p>
+</div>
+
+<div>
+	<p>这是另外一个 div 中的一个段落。</p>
+</div>
+
+<p>这是一个段落。</p>
+
+<p class="url">http://www.runoob.com (index 1)。</p>
+<p>google (index 2).</p>
+<p class="url">http://www.google.com (index 3)。</p>
+
+<script>
+    $(function () {
+        //选取首个 <div> 元素内部的第一个 <p> 元素
+        $("div p").first().css("background-color","yellow");
+        //选择最后一个 <div> 元素中的最后一个 <p> 元素
+        $("div p").last().css("background-color","yellow");
+        //eq() 方法返回被选元素中带有指定索引号的元素。索引号从 0 开始，因此首个元素的索引号是 0 而不是 1。下面的例子选取第二个 <p> 元素（索引号 1）
+        $("p").eq(1).css("background-color","yellow");
+        //返回带有类名 "url" 的所有 <p> 元素
+        $("p").filter(".url").css("background-color","yellow");
+    })
+</script>
+</body>
+</html>

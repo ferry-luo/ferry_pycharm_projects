@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉菜单</title>
+    <style>
+        .drop-down{
+            position:relative;
+            /*inline特点：多个在同一行展示，但如果行的空间不够则会换行*/
+            /*display:inline;*/
+            /*block特点：每一个都独占一行*/
+            display:block;
+            /*inline-block特点：简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。*/
+            /*display:inline-block;*/
+        }
+        /*设置下拉菜单按钮的背景颜色、颜色等*/
+        .drop-down_button{
+            /*cursor定义光标的类型/形状*/
+            cursor:pointer;
+            background-color: lawngreen;
+            color:white;
+            border:none;
+            padding:10px 10px 10px 10px;
+            width:auto;
+            height:auto;
+            line-height:22px;
+            font-family: 楷体;
+            font-size:15px;
+            /*设置元素的垂直对齐方式*/
+            vertical-align: middle;
+            text-align:center;
+        }
+        /*设置下拉菜单这整体的样式，而不是具体的选项*/
+        .drop-down_content{
+            /*鼠标移动到那个位置前，隐藏下拉菜单这个整体*/
+            display:none;
+            /*下拉菜单的最小宽度*/
+            min-width:100px;
+            /*阴影的水平阴影位置（必需）、垂直阴影位置（必需）、模糊距离（可选）、阴影大小（可选）、颜色（可选）*/
+            box-shadow:0 8px 16px 0 darkgrey;
+            /*下拉菜单中选项的填充，默认是0，不太美观。故手动设置*/
+            padding:20px 20px;
+        }
+        /*设置所有a元素的样式（也就是设置具体每个选项），备注：这里的display:block才是真正使每个a元素呈现为一行一个的效果。假如没有这条语句，则呈现的选项a元素是在同一行*/
+        .drop-down_content a{
+            display:block;
+            color:hotpink;
+        }
+        /* 因为之前是隐藏了下拉菜单，这里的代码就是：当光标悬停在那就要显示出下拉菜单。备注：这里的display对具体每个a元素呈现为一行一个、同一行无效。试一下将属性值设为inline、block就会明白*/
+        .drop-down:hover .drop-down_content{
+            /*默认。此元素会被显示为内联元素，元素前后没有换行符。 在这里表示的是下拉菜单显示为内联元素*/
+            display:inline;
+        }
+        /*当移动至下拉菜单的按钮时，按钮的背景颜色变更*/
+        .drop-down:hover .drop-down_button{
+            background-color:lightseagreen;
+        }
+        /*当鼠标移动至具体选项时，文字颜色由hotpink变为violet*/
+        .drop-down_content a:hover{
+            color:violet;
+        }
+    </style>
+</head>
+<body>
+<div class = "drop-down">
+    <!--不只是span，button标签也可以-->
+    <button class = "drop-down_button" type = "button">移动到此处</button>
+    <div class = "drop-down_content">
+        <a href = "http://www.baidu.com" target = "_blank">百度</a>
+        <a href = "http://www.bilibili.com" target = "_blank">B站</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>第一个 ECharts 实例</title>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+<!--ECharts 由数据驱动，数据的改变驱动图表展现的改变，因此动态数据的实现也变得异常简单。-->
+<!--所有数据的更新都通过 setOption 实现，你只需要定时获取数据，setOption 填入数据，-->
+<!--而不用考虑数据到底产生了那些变化，ECharts 会找到两组数据之间的差异然后通过合适的动画去表现数据的变化。-->
+
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    var base = +new Date(2014, 9, 3);
+    var oneDay = 24 * 3600 * 1000;  //1天的毫秒数
+    var date = [];
+
+    var d = [Math.random() * 150];
+    var now = new Date(base);
+
+    function addData(shift) {
+        now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/');
+        //push()方法在数组的末尾添加一个或多个元素
+        date.push(now);
+        d.push((Math.random() - 0.4) * 10 + d[d.length - 1]);
+
+        if (shift) {
+            //shift() 方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。
+            date.shift();
+            d.shift();
+        }
+
+        now = new Date(+new Date(now) + oneDay);
+    }
+
+    for (var i = 1; i < 100; i++) {
+        addData();
+    }
+
+    var option = {
+        title:{
+            text:'数据的动态更新',
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false, //  false就是贴边没有边距，boundaryGap默认值为true
+            data: date
+        },
+        yAxis: {
+            type: 'value',
+            boundaryGap: [0, '50%'],    //[0, '50%']标识在最小值下方扩展0%的空间，在最大值上方扩展50%的空间。
+        },
+        series: [
+            {
+                name: '成交',
+                type: 'line',
+                smooth: true,
+                symbol: 'none',
+                stack: 'a',
+                //区域效果
+                areaStyle: {
+                    normal: {
+                        opacity:0.9,
+                        shadowBlur: 200,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                },
+                data: d
+            }
+        ]
+    };
+    //定时任务
+    setInterval(function () {
+        addData(true);
+        myChart.setOption({
+            xAxis: {
+                data: date
+            },
+            series: [{
+                name: '成交',
+                data: d
+            }]
+        });
+    }, 500);
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    myChart.setOption(option)
+</script>
+</body>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_Array对象</title>
+</head>
+<body>
+<script>
+    var arr1 = ["Cecilie", "Lone"];
+    var arr2 = ["Emil", "Tobias", "Linus"];
+    var arr3 = ["Cecilie", "Lone"];
+    var arr4 = [2,-1,3,7,-10];
+    //合并数组
+    var arr_concat = arr1.concat(arr2,arr3);
+    document.write(arr_concat);
+    //数组转字符串（用数组的元素组成字符串）
+    // join()方法，括号中不填，则默认会以逗号隔开，则与toString()处理数组是一样的效果。
+    var s = arr1.join("-");
+    document.write(s);
+    //删除数组中最后一个元素
+    arr2.pop();
+    document.write(arr2);
+    //删除数组中第一个元素
+    arr2.shift();
+    //数组的末尾添加元素
+    arr2.push("kiwi");
+    document.write(arr2);
+    //数组的开头添加元素
+    arr2.unshift("ben");
+    document.write(arr2);
+    //对数组反转排序
+    arr3.reverse();
+    document.write(arr3);
+    //对数组截取元素   左闭右开区间
+    arr3_slice = arr3.slice(1,3);
+    document.write(arr3_slice);
+    //对数组按字母升序
+    arr3.sort();
+    document.write(arr3);
+    //对数组按数字升序
+    arr4.sort();
+    document.write(arr4);
+    //对数组按数字降序
+    arr4.sort(function (a,b) {
+        return b-a;
+    });
+    document.write(arr4);
+    //在数组的某个位置添加元素
+    arr3.splice(2,0,"baoma");
+    document.write(arr3);
+    //将数组转为字符串  注意：toString不仅可以处理数组，也可以处理数字、布尔
+    var str = arr3.toString();
+    document.write(str);
+
+</script>
+</body>
+</html>

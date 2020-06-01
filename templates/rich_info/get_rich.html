@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>何时能致富啊</title>
+</head>
+<body background="/static/images/星星背景_016.gif">
+<div style="text-align:center;">
+    <p style="color:hotpink;font-family:华文行楷;font-size:24px;">杰，你想致富吗？请在下拉框作出你的选择。</p>
+    <form action="/go_get_rich" method="post">
+        {% csrf_token %}
+        <select name="choice" class="form-control js-example-basic-multiple">
+            <option>-请选择-</option>
+            <option>找富婆</option>
+            <option>编程</option>
+            <option>其他</option>
+        </select>
+        <input type="submit" style="color:green;width:50px;height:20px;" value="查看">
+    </form>
+    <p style="color:yellow;font-family:新宋体;font-size:24px;" id="display_result">{{c}}</p>
+</div>
+</body>
+</html>

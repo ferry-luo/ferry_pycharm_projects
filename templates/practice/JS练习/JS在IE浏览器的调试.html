@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS在IE浏览器的调试</title>
+</head>
+<body>
+<input type="text" id="txt_add">
+<input type="button" value="加法运算" onclick="my_add()">
+<p id="demo"></p>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function my_add() {
+        var a = 10;
+        var b = 20;
+        var c = a + b;
+        $("#txt_add").val(c);
+        document.getElementById("demo").innerHTML = c;
+    }
+</script>
+</body>
+</html>

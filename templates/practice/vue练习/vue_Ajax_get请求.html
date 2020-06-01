@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_Ajax_get请求</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+</head>
+<body>
+<div id = "app">
+    {{info}}
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:function(){
+            return {
+                info:null
+            }
+        },
+        //created：在模板渲染成html前调用，即通常初始化某些属性值，然后再渲染成视图。
+        //mounted：在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
+        mounted(){
+        axios
+            .get('/user',{
+                params:{
+                    ID:12345
+                }
+            })
+            .then(function(response){
+                this.info = response;
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+        }
+    });
+
+</script>
+</body>
+</html>

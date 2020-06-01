@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_Date对象</title>
+</head>
+<body>
+<p id="year"></p>
+<p id="month"></p>
+<p id="day"></p>
+<p id="week"></p>
+<p id="hour"></p>
+<p id="minute"></p>
+<p id="second"></p>
+<p id="mill_second"></p>
+<button onclick="show_sth()">点我</button>
+<script>
+    function show_sth() {
+        var today = new Date();
+        //get系列：
+        //4位年份
+        document.getElementById("year").innerHTML = today.getFullYear();
+        //getMonth()返回值是 0（一月） 到 11（十二月） 之间的一个整数
+        document.getElementById("month").innerHTML = today.getMonth();
+        //getDate()返回某一月中的某一天（1-31）
+        document.getElementById("day").innerHTML = today.getDate();
+        //getDay()返回某一周中的某一天（0-6）
+        document.getElementById("week").innerHTML = today.getDay();
+        //返回当前的小时（0-23）
+        document.getElementById("hour").innerHTML = today.getHours();
+        //返回当前的分钟（0-59）
+        document.getElementById("minute").innerHTML = today.getMinutes();
+        //返回当前的秒（0-59）
+        document.getElementById("second").innerHTML = today.getSeconds();
+        //返回的是1970年1月1日至今的毫秒数
+        document.getElementById("mill_second").innerHTML = today.getTime();
+
+        //set系列:
+        var my_Date = new Date();
+        //设置月份中的某一天
+        my_Date.setDate(my_Date.getDate() + 5);
+        //以毫秒数设置日期
+        var my_time = my_Date.setTime(1232212122211);
+        document.write("我自己设置的时间为：" + my_Date);
+        document.write("我自己以毫秒数设置的时间为：" + my_time);
+
+        var x = new Date();
+        x.setFullYear(2100,0,14);
+        if(x > today){
+            alert("今天在2100年1月14日前");
+        }
+    }
+</script>
+</body>
+</html>

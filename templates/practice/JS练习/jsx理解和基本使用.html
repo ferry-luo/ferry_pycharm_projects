@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSX理解和基本使用</title>
+    <script src = "https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src = "https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src = "https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id = "test_1"></div>
+<div id = "test_2"></div>
+
+<script type = "text/javascript">
+    const msg = "I like you";
+    const my_id = "ferry";
+
+    const virtual_dom_1 = React.createElement('h2',{id:my_id.toLowerCase()},msg.toUpperCase());
+    ReactDOM.render(virtual_dom_1,document.getElementById("test_1"));
+</script>
+
+<script type = "text/babel">
+    //babel.js的作用：将jsx转成js，因为浏览器只能识别js
+    //1.创建虚拟DOM元素对象
+    const virtual_dom_2 = <h3 id = {my_id.toUpperCase()}>{msg.toLowerCase()}</h3>;
+    //2.将虚拟DOM渲染到真实DOM容器中
+    ReactDOM.render(virtual_dom_2,document.getElementById("test_2"));
+</script>
+</body>
+</html>

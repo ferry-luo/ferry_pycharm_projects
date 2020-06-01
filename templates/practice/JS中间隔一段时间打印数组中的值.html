@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js中间隔一段时间打印数组中的值</title>
+</head>
+<body>
+<p>哈哈</p>
+</body>
+<script>
+    var arr = [1,2,3,4,5];
+    //方法1：自执行函数
+//    for(var i = 0;i < arr.length;i++){
+//        (function (i){
+//            setTimeout(function show(){
+//            console.log(arr[i]);
+//            },1000*i);
+//        })(i)
+//    }
+    //方法2：let,作用域只在循环体内
+    for(let j = 0;j < arr.length;j++){
+        (function (){
+           setTimeout(function show(){
+               console.log(arr[j]);
+           },1000*j) ;
+        })()
+    }
+</script>
+</html>

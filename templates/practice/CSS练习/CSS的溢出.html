@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>溢出</title>
+    <style>
+        .overflow_visible{
+            /*visible,内容不会被裁剪，会呈现在元素框之外*/
+            overflow:visible;
+            width:200px;
+            height:100px;
+            border-style:solid;
+            border-color:blueviolet;
+        }
+        .overflow_auto{
+            /*auto，如果内容被裁剪，会显示滚动条以便查看其余内容*/
+            overflow:auto;
+            width:200px;
+            height:100px;
+            border-style:solid;
+            border-color:blueviolet;
+        }
+        .overflow_scroll{
+            /*scroll，内容一定会被修剪，但是浏览器会显示滚动条以便查看其余的内容。*/
+            overflow:scroll;
+            width:200px;
+            height:100px;
+            border-style:solid;
+            border-color:blueviolet;
+        }
+        .overflow_hidden{
+            /*hidden，内容被裁剪，其余内容是不可见的。*/
+            overflow:hidden;
+            width:150px;
+            height:50px;
+            border-style:solid;
+            border-color:blueviolet;
+        }
+        .overflow_inherit{
+            /*inherit，从父元素集成overflow属性的属性值*/
+            overflow:inherit;
+            width:150px;
+            height:50px;
+            border-style:solid;
+            border-color:blueviolet;
+        }
+    </style>
+</head>
+<body>
+<div class = "overflow_visible">
+    <p>苹果</p>
+    <p>香蕉</p>
+    <p>樱桃</p>
+</div>
+<br>
+<div class = "overflow_auto">
+    <p>衬衫</p>
+    <p>卫衣</p>
+    <p>T恤</p>
+</div>
+<br>
+<div class = "overflow_scroll">
+    <p>休闲裤</p>
+    <p>西裤</p>
+    <p>牛仔裤</p>
+</div>
+<br>
+<div class = "overflow_hidden">
+    <p>香烟、啤酒、槟榔、可乐、雪碧、红酒、鸡尾酒、薯片、辣条</p>
+    <br>
+    <div class = "overflow_inherit">
+        <p>黄山</p>
+        <p>芙蓉王</p>
+        <p>白沙</p>
+    </div>
+</div>
+</body>
+</html>

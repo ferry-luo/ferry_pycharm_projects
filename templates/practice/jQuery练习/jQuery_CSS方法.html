@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery_CSS方法</title>
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<h2>这是一个标题</h2>
+<p style="background-color:#ff0000">这是一个段落。</p>
+<button id="btn1">返回 p 元素的 background-color </button>
+
+<h2>这是一个标题</h2>
+<p style="background-color:#ff0000">这是一个段落。</p>
+<p style="background-color:#00ff00">这是一个段落。</p>
+<p style="background-color:#0000ff">这是一个段落。</p>
+<p>这是一个段落。</p>
+<button id="btn2">为 p 元素设置多个样式</button>
+
+<script>
+    $(function () {
+        $("#btn1").click(function () {
+            alert("背景色：" + $("p").css("background-color"));
+        });
+        $("#btn2").click(function () {
+            $("p").css({
+                "background-color":"orangered",
+                "font-size":"24px"
+            })
+        });
+    })
+</script>
+</body>
+</html>

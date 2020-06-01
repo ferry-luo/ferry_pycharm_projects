@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_事件处理器</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id = "app">
+    <button v-on:click = "say('hello')">say hello</button>
+    <button v-on:click = "say('ferry')">say ferry</button>
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        methods:{
+            say:function(mes){
+                alert(mes);
+            }
+        }
+    })
+</script>
+</body>
+</html>

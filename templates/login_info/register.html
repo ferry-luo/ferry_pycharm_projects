@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <style>
+        .layui-form {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .layui-form-item {
+            text-align: center;
+            margin:15px 0;
+        }
+        .layui-input {
+            width:auto;
+            line-height: 25px;
+        }
+        .layui-btn {
+            display: inline-block;
+            height: 38px;
+            line-height: 38px;
+            padding: 0 18px;
+            background-color: #009688;
+            color: #fff;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 14px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer
+        }
+        .layui-btn-normal {
+            background-color: #1E9FFF
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <form class="layui-form" method="POST" action="/register_handle">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+
+                <input type="text" id="user" name="user" lay-verify="required" autocomplete="off" placeholder="请输入用户名"
+                       class="layui-input">
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+
+                <input type="text" id="password" name="password" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？" placeholder="请输入密码"
+                       autocomplete="off" class="layui-input">
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">昵称</label>
+
+                <input type="text" id="nickname" name="nickname" lay-verify="required" lay-reqtext="岂能为空？" placeholder="请输入昵称"
+                       autocomplete="off" class="layui-input">
+
+        </div>
+        <input class="layui-btn layui-btn-normal" type="submit" value="注册" v-on:click="judge_input">
+        <p style="color:red;">{{result_register.message}}</p>
+    </form>
+</div>
+
+
+<script>
+    new Vue({
+        el:"#app",
+        methods:{
+            judge_input:function () {
+                var u = document.getElementById("user").value,p = document.getElementById("password").value;
+                console.log(u);
+                if(u == "" || p == ""){
+                    window.alert("用户名和密码都不能为空");
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

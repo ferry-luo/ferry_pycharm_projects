@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_HTML NodeList</title>
+</head>
+<body>
+<p>Hello World!</p>
+
+<p>Hello Runoob!</p>
+
+<p>点击按钮修改所有 p 元素的背景颜色。</p>
+
+<p id="demo"></p>
+
+<button onclick="my_function()">点我</button>
+
+<script>
+    function my_function() {
+        var my_nodelist = document.querySelectorAll("p");
+        for(var i = 0;i < my_nodelist.length;i++){
+            my_nodelist[i].style.color = "red";
+        }
+        document.getElementById("demo").innerHTML = "文档包含" + my_nodelist.length + "个段落";
+    }
+</script>
+</body>
+</html>

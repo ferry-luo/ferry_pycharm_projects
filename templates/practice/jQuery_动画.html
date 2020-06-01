@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery_动画</title>
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<div id = "text1">文字</div>
+<div id = "text2">文字</div>
+<div id = "text3">文字</div>
+<button id = "animate1">开始动画1</button>
+<button id = "animate2">开始动画1</button>
+<button id = "animate3">开始动画1</button>
+
+<script>
+    $(function () {
+        $("#animate1").click(function () {
+            //操作多个属性。可以使用相对值，例如height:'+150px'
+            $("#text1").animate({
+                left:'200px',
+                width:'150px',
+                height:'+150px',
+                opacity:0.4
+            })
+        });
+        $("#animate2").click(function () {
+            //使用预定义的值。动画值设置为 "show"、"hide" 或 "toggle"
+            $("#text2").animate({
+                height:'toggle'
+            })
+        });
+        $("#animate3").click(function () {
+            //使用队列功能。编写多个 animate() 调用，jQuery 会创建包含这些方法调用的"内部"队列。然后逐一运行这些 animate 调用。
+            $("text3").animate({
+                height:'300px',
+                opacity:'0.4'
+            },"slow");
+            $("#text3").animate({
+                width:'300px',
+                opacity:'0.8'
+            },"slow");
+            $("#text3").animate({
+                height:'100px',
+                opacity:'0.8'
+            },"slow");
+            $("#text3").animate({
+                fontSize:'3em'
+            },1000);
+        })
+    })
+</script>
+</body>
+</html>

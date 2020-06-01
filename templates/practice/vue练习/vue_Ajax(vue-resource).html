@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_Ajax(vue-resource)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
+<!--    Vue 要实现异步加载需要使用到 vue-resource 库。-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+<body>
+<div id = "app">
+    <button v-on:click = "my_get()">点我异步获取数据</button>
+</div>
+
+<script>
+    //window.onload() 方法用于在网页加载完毕后立刻执行的操作,即当 HTML 文档加载完毕后,立刻执行某个方法。
+    window.onload = function(){
+        new Vue({
+            el:'#app',
+            methods:{
+                my_get:function () {
+                    //发送get请求
+                    this.$http.get('https://www.runoob.com/try/ajax/ajax_info.txt').then(function (res) {
+                        document.write(res.body);
+                    })
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+<h2>字符串转换为函数</h2>
+
+<p id="demo"></p>
+
+<script>
+    // JSON 不允许包含函数，但你可以将函数作为字符串存储，之后再将字符串转换为函数。
+    var text = '{ "name":"Runoob", "alexa":"function () {return 10000;}", "site":"www.runoob.com"}';
+    var obj = JSON.parse(text);
+    //eval(字符串)，eval() 函数使用的是 JavaScript 编译器，可解析 JSON 文本，然后生成 JavaScript 对象
+    obj.alexa = eval("(" + obj.alexa + ")");
+
+    document.getElementById("demo").innerHTML = obj.name + " Alexa 排名：" + obj.alexa();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮廓</title>
+    <style>
+        p{
+            /*边框*/
+            border:1px solid red;
+            /*轮廓是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。*/
+            outline-style:dotted;
+            outline-color:green;
+            outline-width:3px;
+        }
+        p.dotted{
+            outline-style:dotted;
+        }
+        p.dashed{
+            outline-style:dashed;
+        }
+        p.solid{
+            outline-style:solid;
+        }
+        p.double{
+            outline-style:double;
+        }
+        p.groove{
+            outline-style:groove;
+        }
+        p.ridge{
+            outline-style:ridge;
+        }
+        p.inset{
+            outline-style:inset;
+        }
+        p.outset{
+            outline-style:outset;
+        }
+    </style>
+</head>
+<body>
+<p class = "dotted">点线轮廓</p>
+<p class = "dashed">虚线轮廓</p>
+<p class="solid">实线轮廓</p>
+<p class="double">双线轮廓</p>
+<p class="groove">凹槽轮廓</p>
+<p class="ridge">垄状轮廓</p>
+<p class="inset">嵌入轮廓</p>
+<p class="outset">外凸轮廓</p>
+<p>在这句话外面画一条线</p>
+</body>
+</html>

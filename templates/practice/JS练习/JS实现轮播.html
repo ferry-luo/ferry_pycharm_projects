@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图片轮播代码</title>
+    <meta charset="utf-8">
+    <style>
+        #lunbo_img,img{
+            width:400px;
+            height:300px;
+            text-align:center;
+            margin:0 auto;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+</head>
+<body>
+<div id = "lunbo_img">
+    <img id = "lunbo" src = "http://127.0.0.1:8000/static/images/初中毕业照.jpeg">
+</div>
+</body>
+<script type="text/javascript">
+    var li = [
+        "http://127.0.0.1:8000/static/images/初中毕业照.jpeg",
+        "http://127.0.0.1:8000/static/images/高中毕业照.jpeg",
+        "http://127.0.0.1:8000/static/images/本科毕业照.jpeg"
+    ];
+    var num = 0;
+    var x = document.getElementById("lunbo");
+    setInterval(function(){
+        x.src = li[num];
+        num++;
+        //方案1：条件运算符
+        //num = (num == li.length)?0:num;
+        //方案2：条件语句
+        if(num == li.length){
+            num = 0;
+        }
+        console.log(li[num]);
+    },1000);
+</script>
+</html>

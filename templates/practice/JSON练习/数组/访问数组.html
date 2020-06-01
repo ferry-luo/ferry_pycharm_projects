@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+<p>访问 JSON 对象数组值。</p>
+
+<p id="demo"></p>
+
+<script>
+
+    var myObj, x;
+    myObj = {
+        "name": "网站",
+        "num": 3,
+        "sites": ["Google", "Runoob", "Taobao"]
+    };
+    //通过索引来访问数组
+    x = myObj.sites[0];
+    document.getElementById("demo").innerHTML = x;
+
+</script>
+
+</body>
+</html>

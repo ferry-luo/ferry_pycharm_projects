@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/res/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/res/layui/css/layui.css">
+
+    <style>
+        .layui-form {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .layui-form-item {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .layui-input {
+            width: auto;
+            line-height: 25px;
+        }
+
+        .layui-btn {
+            display: inline-block;
+            height: 38px;
+            line-height: 38px;
+            padding: 0 18px;
+            background-color: #009688;
+            color: #fff;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 14px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer
+        }
+
+        .layui-btn-normal {
+            background-color: #1E9FFF
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <div class="layui-btn-group" style="float:left;">
+        <button type="button" class="layui-btn" id="table_export">导出</button>
+        <button type="button" class="layui-btn" id="table_delete">删除</button>
+    </div>
+
+    <form method="post" action="/import_event" data-ajax="false" enctype="multipart/form-data">
+        <div class="form-group" id="thumbnailUploadContainer" class="col-sm-10"
+             style="float: left; margin-right: 50px;">
+            <input id="files" name="event_excel" type="file" class="form-control" accept=".xls,.xlsx"
+                   style="width: 300px; display: inline;" onclick="chooseFile()">
+            <input id="import" type="submit" style="width: 60px;height: 35px;" value="上传"/>
+        </div>
+    </form>
+
+
+    <div>{{result_upload.message}}</div>
+    <a href="{{result_upload.data.0.excel_url}}"
+       style="text-decoration: underline">{{result_upload.data.0.excel_name}}</a>
+    <form class="layui-form" method="post" action="/get_event_handle">
+        <div class="layui-form-item">
+            <label class="layui-form-label">发布会ID</label>
+
+            <input type="text" id="event_id" name="event_id" lay-verify="required" autocomplete="off"
+                   placeholder="请输入发布会ID"
+                   class="layui-input">
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发布会标题</label>
+
+            <input type="text" id="event_name" name="event_name" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？"
+                   placeholder="请输入发布会标题"
+                   autocomplete="off" class="layui-input">
+
+        </div>
+        <input class="layui-btn layui-btn-normal" id="query" type="submit" value="查询">
+        <p>{{result.message}}</p>
+    </form>
+</div>
+
+<table class="layui-table" id="event_table">
+    <colgroup>
+        <col width="150">
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>
+            <input type="checkbox" id="check_all">
+        </th>
+        <th>发布会标题</th>
+        <th>发布会限制人数</th>
+        <th>发布会地址</th>
+        <th>发布会开始时间</th>
+        <th>发布会状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <input type="checkbox" id="check_one" name="check_one" value="{{result_event.get_event_id}}">
+        </td>
+        <td>{{result.data.0.get_event_name}}</td>
+        <td>{{result.data.0.get_event_limit}}</td>
+        <td>{{result.data.0.get_event_address}}</td>
+        <td>{{result.data.0.get_event_start_time}}</td>
+        <td>{{result.data.0.get_event_status}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="/static/res/layui/layui.js" charset="utf-8"></script>
+<script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    //勾选和取消勾选，导出
+    $(function () {
+        //check_id_array存储被选中的条目
+        var check_id_array = [];
+        $("#check_one").click(function () {
+            check_id = $(this).val();
+            if (this.checked) {
+                check_id_array.push(check_id);
+            } else {
+                for (var j = 0; j < check_id_array.length; j++) {
+                    if (check_id_array[j] == check_id) {
+                        //splice(index,howmany) 从何处删除元素，删除多少元素
+                        check_id_array.splice(j, 1); //取消勾选条目
+                        break;
+                    }
+                }
+            }
+        });
+        //导出
+        $("#table_export").click(function () {
+            //console.log(check_id_array);
+            window.location.href = "/export_event?check_id_s=" + check_id_array;
+        });
+
+
+        // 删除
+        $("#table_delete").click(function () {
+            window.location.href = "/delete_event?check_id_s=" + check_id_array;
+        });
+        layui.use('table', function () {
+            var table = layui.table;
+
+            table.render({
+                elem: '#event_table'
+                , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+                , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                    title: '提示'
+                    , layEvent: 'LAYTABLE_TIPS'
+                    , icon: 'layui-icon-tips'
+                }]
+            })
+        })
+
+        //导入
+//        $("#saveZipButton").click(function () {
+//            var formData = new FormData();
+//            var name = $("#articleImageFile").val();
+//            formData.append("file", $("#articleImageFile")[0].files[0]);
+//            formData.append("name", name);//这个地方可以传递多个参数
+//            $.ajax({
+//                url: "/import_event",
+//                type: 'POST',
+//                async: false,
+//                data: formData,
+//                // 告诉jQuery不要去处理发送的数据
+//                processData: false,
+//                // 告诉jQuery不要去设置Content-Type请求头
+//                contentType: false,
+//                beforeSend: function () {
+//                    console.log("正在进行，请稍候");
+//                },
+//                success: function (responseStr) {
+//                    if (responseStr == "01") {
+//                        alert("导入成功");
+//                    } else {
+//                        alert("导入失败");
+//                    }
+//                }
+    });
+</script>
+
+<script type="text/javascript">
+    //当点击“上传”，则触发点击“选择文件”
+    // $("#import").click(function () {
+    //     $("#files").click();
+    // });
+
+    //获取本地计算机文件
+    function chooseFile() {
+        var selectedFile = document.getElementById("files").files[0];//获取读取的File对象
+        var name = selectedFile.name;//读取选中文件的文件名
+        var size = selectedFile.size;//读取选中文件的大小
+        console.log("文件名:" + name + "大小：" + size);
+
+        var reader = new FileReader();//读取操作
+        reader.readAsText(selectedFile);//读取文件的内容
+
+        // reader.readAsBinaryString(selectedFile);
+        /*
+        reader.onload = function () {//读取文件是异步进行的，onload方法是读取成功之后，你要进行的操作。
+            var file = this.result.toString();
+            // resolve(this.result)
+            console.log(file);//log
+
+            //此处我是进行了一个向后端传输文件的操作
+
+            $.ajax({
+                type: "post",
+                cache: false,
+                url: "/import_event",
+                dataType: "text",
+                ContentType:"application/x-www-form-urlencoded; charset=utf-8",
+                data: {
+                    "file": file
+                },
+                beforeSend:function () {
+                    window.location.href = "/import_event"
+                },
+                success: function (data) {
+                    console.log(data)
+                    if (data == 0)
+                    alert("导入数据库成功！")
+                    else {
+                        alert("导入失败！")
+                    }
+                },
+                error: function (data) {
+                    console.log(data)
+                    alert("未能导入数据库")
+                }
+            });
+            */
+    }
+
+</script>
+</body>
+</html>

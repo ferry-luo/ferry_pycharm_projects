@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪类</title>
+    <style>
+        p:first-child i{
+            color:deeppink;
+        }
+
+        p:last-child{
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p>You are a <i>beautiful </i>girl.You are a <i>beautiful </i>girl.</p>
+    <p>You are a <i>beautiful </i>girl.You are a <i>beautiful </i>girl.</p>
+    <h3>以上为匹配第一个p元素中的所有i元素：</h3>
+</div>
+
+<div class="div1">
+    <h3>以上为匹配最后一个p元素中的所有i元素，注意：最后一个p元素后面如果还有其他任何元素，则不会匹配到</h3>
+	<p>第一个段落。</p>
+    <p>第二个段落。</p>
+    <p>第三个段落。</p>
+    <p>第四个段落。</p>
+	<p>第五个段落。</p>
+</div>
+</body>
+</html>

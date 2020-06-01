@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生日祝福</title>
+</head>
+<body background="/static/images/星星背景_009.gif">
+<div style="text-align:center;">
+    <p>
+        <img src="/static/images/00.gif">
+    </p>
+    <p>
+        <img src="/static/images/14.gif">
+    </p>
+    <p style="color:yellow;font-size:26px;font-family:华文行楷;">希望我是第一个给你送生日祝福的人</p>
+    <p>
+        <img src="/static/images/15.gif">
+    </p>
+    <p>
+        <img src="/static/images/01.gif">
+    </p>
+    <p style="color:yellow;font-size:26px;font-family:华文行楷;">在你生日来临之际，</p>
+    <p style="color:lightskyblue;font-size:26px;font-family:华文行楷;">我将快乐的音符，</p>
+    <p style="color:yellow;font-size:26px;font-family:华文行楷;">作为生日礼物送给你，</p>
+    <p style="color:red;font-size:26px;font-family:华文行楷;">愿你拥有365个美好的日子。</p>
+    <p>
+        <img src="/static/images/17.gif">
+    </p>
+    <p style="color:mediumpurple;font-size:26px;font-family:华文行楷;">因为你的降临，</p>
+    <p style="color:mediumorchid;font-size:26px;font-family:华文行楷;">这一天成了一个美丽的日子，</p>
+    <p style="color:salmon;font-size:26px;font-family:华文行楷;">从此世界，</p>
+    <p style="color:deeppink;font-size:26px;font-family:华文行楷;">便多了一抹瑰丽的色彩！</p>
+    <p>
+        <img src="/static/images/03.gif">
+    </p>
+    <p>
+        <a style="color:red;font-family:华文行楷;font-size:30px;" id="display_1"></a>
+        <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_2"></a>
+        <a style="color:mediumpurple;font-family:华文行楷;font-size:30px;" id="display_3"></a>
+        <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_4"></a>
+        <a style="color:lightcoral;font-family:华文行楷;font-size:30px;" id="display_5"></a>
+        <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_6"></a>
+        <a style="color:lightskyblue;font-family:华文行楷;font-size:30px;" id="display_7"></a>
+        <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_8"></a>
+        <a style="color:limegreen;font-family:华文行楷;font-size:30px;" id="display_9"></a>
+    </p>
+    <p style="color:orangered;font-size:26px;font-family:华文行楷;">留不住的是时间，</p>
+    <p style="color:orange;font-size:26px;font-family:华文行楷;">斩不断的是祝福。</p>
+    <p style="color:lightpink;font-size:26px;font-family:华文行楷;">希望你拥有一个甜蜜温馨、快快乐乐的生日！</p>
+    <p>
+        <a style="color:red;font-size:26px;font-family:华文行楷;">祝</a>
+        <a style="color:mediumpurple;font-size:26px;font-family:华文行楷;">你</a>
+        <a style="color:lightskyblue;font-size:26px;font-family:华文行楷;">愿</a>
+        <a style="color:limegreen;font-size:26px;font-family:华文行楷;">望</a>
+        <a style="color:lightcoral;font-size:26px;font-family:华文行楷;">成</a>
+        <a style="color:hotpink;font-size:26px;font-family:华文行楷;">真</a>
+    </p>
+    <p>
+        <img src="/static/images/12.gif">
+    </p>
+    <p>
+        <img src="/static/images/16.gif">
+    </p>
+    <audio autoplay="autoplay" controls>
+        <source src="/static/images/生日快乐.mp3">
+    </audio>
+    <p>
+        <a style="color:red;font-size:26px;font-family:华文行楷;">最</a>
+        <a style="color:mediumpurple;font-size:26px;font-family:华文行楷;">特</a>
+        <a style="color:lightskyblue;font-size:26px;font-family:华文行楷;">别</a>
+        <a style="color:limegreen;font-size:26px;font-family:华文行楷;">的</a>
+        <a style="color:orange;font-size:26px;font-family:华文行楷;">生</a>
+        <a style="color:orangered;font-size:26px;font-family:华文行楷;">日</a>
+        <a style="color:lightcoral;font-size:26px;font-family:华文行楷;">祝</a>
+        <a style="color:hotpink;font-size:26px;font-family:华文行楷;">福</a>
+    </p>
+    <p style="color:orange;font-size:24px;font-family:'Times New Roman';">By:Ferry</p>
+    <p>
+        <img src="/static/images/13.gif">
+    </p>
+</div>
+<script>
+    //计算时间差，并动态展示
+    var t = setTimeout(cal_time_difference,500);
+    function cal_time_difference(){
+        var former_time = new Date("1987-08-18T06:00:00");
+        var f_time = former_time.getTime();
+        var current_time = new Date();
+        var c_time = current_time.getTime();
+
+        var elapsed_time = c_time - f_time;
+        var elapsed_days = Math.floor(elapsed_time/(24*60*60*1000));    //floor() 方法返回小于等于x的最大整数。如果传递的参数是一个整数，该值不变。
+        var x1 = elapsed_time%(24*60*60*1000);
+        var elapsed_hours = Math.floor(x1/(60*60*1000));
+        var x2 = x1%(60*60*1000);
+        var elapsed_minutes = Math.floor(x2/(60*1000));
+        var x3 = x2%(60*1000);
+        var elapsed_seconds = Math.floor(x3/1000);
+
+        t = setTimeout(cal_time_difference,500);
+        document.getElementById("display_1").innerHTML = "你已经破壳";
+        document.getElementById("display_2").innerHTML = elapsed_days;
+        document.getElementById("display_3").innerHTML = "天";
+        document.getElementById("display_4").innerHTML = elapsed_hours;
+        document.getElementById("display_5").innerHTML = "时";
+        document.getElementById("display_6").innerHTML = elapsed_minutes;
+        document.getElementById("display_7").innerHTML = "分";
+        document.getElementById("display_8").innerHTML = elapsed_seconds;
+        document.getElementById("display_9").innerHTML = "秒";
+    }
+</script>
+</body>
+</html>

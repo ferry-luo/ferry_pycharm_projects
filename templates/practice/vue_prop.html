@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_prop</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id = "app">
+    <ol>
+        <my_li v-for = "item in sites" v-bind:todo = "item"></my_li>
+    </ol>
+</div>
+<script>
+    //注册
+    Vue.component('my_li',{
+        props:['todo'],
+        template:'<li>{{todo.text}}</li>'
+    });
+    //创建根实例
+    new Vue({
+        el:'#app',
+        data:{
+            sites:[
+                {text:'runoob'},
+                {text:'google'},
+                {text:'baidu'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_循环语句</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id = "app">
+    <ul>
+        <!--sites 是源数据数组并且 site 是数组元素迭代的别名-->
+       <li v-for = "site in sites">
+           {{site.name}}
+       </li>
+    </ul>
+</div>
+
+<div id = "app2">
+    <ul>
+        <li v-for = "v in obj">
+            {{v}}
+        </li>
+    </ul>
+</div>
+
+<div id = "app3">
+    <ul>
+        <li v-for = "(v,k) in obj">
+            {{k}}:{{v}}
+        </li>
+    </ul>
+</div>
+
+<div id = "app4">
+    <ul>
+        <li v-for = "n in 10">
+            {{n}}
+        </li>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            sites:[
+                {name:'runoob'},
+                {name:'baidu'},
+                {name:'google'}
+            ]
+        }
+    });
+
+    new Vue({
+        el:'#app2',
+        data:{
+            obj:{
+                name:'sougou',
+                url:'http://www.sougou.com',
+                say:'只有搜狗才能搜到你'
+            }
+        }
+    });
+
+    new Vue({
+        el:'#app3',
+        data:{
+            obj:{
+                name:'baidu',
+                url:'http://www.baidu.com',
+                say:'不会就百度'
+            }
+        }
+    });
+
+    new Vue({
+        el:'#app4'
+    })
+</script>
+</body>
+</html>

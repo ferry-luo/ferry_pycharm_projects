@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>怎样才能快乐</title>
+</head>
+<body background="/static/images/星星背景_009.gif">
+<div style="display:-ms-flex;display:flex;text-align:center;">
+    <div style="-ms-flex:30%;flex:30%;text-align:center;">
+        <div style="float:left;">
+            <a href="http://www.mazigu.com/" style="color:purple;font-size:24px;" target="_blank">黄色视频</a>
+            <a href="https://www.douyu.com/" style="color:purple;font-size:24px;" target="_blank">斗鱼直播</a>
+            <a href="https://lol.qq.com/main.shtml" style="color:purple;font-size:24px;" target="_blank">英雄联盟</a>
+        </div>
+        <div style="float:right;">
+            <a href="http://47.94.202.0:8000/contactus" style="color:blueviolet;font-size:24px;" target="_blank">联系我们</a>
+        </div>
+    </div>
+    <div style="-ms-flex:65%;flex:65%;text-align:center;">
+        <div>
+            <p>兄嘚，你想快乐吗？请在下方作出你的选择并点击查看。</p>
+            <form action="/go_get_entertainment" method="post">
+                {% csrf_token %}
+                <select name="choice">
+                    <option>-请选择-</option>
+                    <option>看黄片</option>
+                    <option>找乔碧萝</option>
+                    <option>玩亚索</option>
+                </select>
+                <input style="color:green;width:50px;height:20px;" type="submit" value="查看">
+            </form>
+            <p style="color:hotpink;font-family:华文行楷;font-size:24px;">{{c}}</p>
+        </div>
+    </div>
+</div>
+<div class="bottom" style="text-align:center;">
+    <h3 style="color:yellow;font-family:'Times New Roman';">copyright@Ferry</h3>
+</div>
+</body>
+</html>

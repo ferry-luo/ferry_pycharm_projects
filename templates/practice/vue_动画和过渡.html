@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_动画和过渡</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <style>
+        .fade-enter-active,.fade-leave-active{
+            transition:opacity 2s;
+        }
+        .fade-enter,.fade-leave-to{
+            opacity:0;
+        }
+    </style>
+</head>
+<body>
+<div id = "app">
+    <button v-on:click = "diff_show">点我</button>
+    <transition name = "fade">
+        <p v-show = "show" v-bind:style = "style_obj">动画</p>
+    </transition>
+    <transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+        <p v-if = "show">菜鸟教程 -- 学的不仅是技术，更是梦想！！！</p>
+    </transition>
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            show:true,
+            style_obj:{
+                fontSize:'30px',
+                color:'red'
+            }
+        },
+        //computed是属性调用{{computedTest}}，而methods是函数调用，必须要加上()来调用，如{{methodTest()}}
+        //computed带有缓存功能，而methods没有
+        methods:{
+                diff_show:function(){
+                    this.show = !this.show;
+                }
+            }
+    })
+</script>
+</body>
+</html>

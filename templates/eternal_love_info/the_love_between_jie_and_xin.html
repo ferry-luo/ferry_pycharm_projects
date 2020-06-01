@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>杰与欣的爱</title>
+</head>
+<body background="/static/images/星星背景_009.gif">
+<div style="display:-ms-flex;display:flex;">
+    <div style="-ms-flex:65%;flex:65%;">
+        <p style="color:hotpink;font-family:'Times New Roman';font-size:24px;">Dear Xin Wen:</p>
+        <p style="color:hotpink;font-family:华文行楷;font-size:24px;text-indent:2em;">我没有特别喜欢吃的零食，没有特别喜欢听的歌，却有个特别喜欢的你。
+        比起天黑和鬼，我更怕你心酸和皱眉。
+        不想去到永远那么远，只想呆在你附近这么近。
+        一年四季会有很多意外,但最迷人的，还是遇见了你。
+        你是我光是想想都会偷着乐的人，甜不可言。</p>
+        <p style="color:hotpink;font-family:华文行楷;font-size:24px;text-indent:2em;">虽然我不是你第一个喜欢的人，但我希望是与你相伴到老的人。
+        陪你走完这一生，彼此温暖，互不辜负。</p>
+        <p style="text-align:center;">
+            <a style="color:red;font-family:华文行楷;font-size:30px;" id="display_1"></a>
+            <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_2"></a>
+            <a style="color:mediumpurple;font-family:华文行楷;font-size:30px;" id="display_3"></a>
+            <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_4"></a>
+            <a style="color:lightcoral;font-family:华文行楷;font-size:30px;" id="display_5"></a>
+            <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_6"></a>
+            <a style="color:lightskyblue;font-family:华文行楷;font-size:30px;" id="display_7"></a>
+            <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_8"></a>
+            <a style="color:limegreen;font-family:华文行楷;font-size:30px;" id="display_9"></a>
+        </p>
+        <div style="text-align:center;">
+            <p style="color:hotpink;font-family:华文行楷;font-size:24px;text-align:center;">此时此刻，不知你的想法是什么？请在下方下拉框作出选择并提交。</p>
+            <form action="/the_love_between_jie_and_xin" method="post" name="choice_form">
+                {% csrf_token %}
+                <select name="choose">
+                    <option>-请选择-</option>
+                    <option>只想恋爱，不想结婚</option>
+                    <option>愿意结婚，相伴一生</option>
+                    <option>我已失望，铁心分手</option>
+                    <option>不再爱你，心系他人</option>
+                </select>
+                <input type="submit" style="color:green;width:50px;height:20px;" value="提交" onclick="display_green_hat()">
+            </form>
+            <p style="color:yellow;font-family:新宋体;font-size:24px;">{{say1}}</p>
+            <p style="color:red;font-family:新宋体;font-size:24px;">{{say2}}</p>
+            <p style="color:gray;font-family:新宋体;font-size:24px;">{{say3}}</p>
+            <p style="color:green;font-family:新宋体;font-size:24px;">{{say4}}</p>
+            <p style="text-align:center;">
+                <img id="show_green_hat" src="/static/images/星星背景_009.gif">
+            </p>
+        </div>
+    </div>
+    <div style="-ms-flex:35%;flex:35%;text-align:center;">
+        <p>
+            <img id="change_photo" style="width:600px;height:800px;" src="/static/images/杰和欣游广州塔.jpg">
+        </p>
+    </div>
+</div>
+<script>
+    //动态展示计算的时间差
+    setTimeout(cal_different_time,500);
+    function cal_different_time(){
+        var start_time = new Date("2019-01-05T00:00:00");
+        var s_time = start_time.getTime();
+        var current_time = new Date();
+        var c_time = current_time.getTime();
+
+        var elapsed_time = c_time - s_time; //计算时间差
+        var elapsed_days = Math.floor(elapsed_time/(24*60*60*1000));    //计算逝去的天数
+        var x1 = elapsed_time%(24*60*60*1000);
+        var elapsed_hours = Math.floor(x1/(60*60*1000));    //计算逝去的小时
+        var x2 = x1%(60*60*1000);
+        var elapsed_minutes = Math.floor(x2/(60*1000)); //计算逝去的分钟
+        var x3 = x2%(60*1000);
+        var elapsed_seconds = Math.floor(x3/(1000)); //计算逝去的秒数
+
+        setTimeout(cal_different_time,500);
+        document.getElementById("display_1").innerHTML = "我们已经在一起";
+        document.getElementById("display_2").innerHTML = elapsed_days;
+        document.getElementById("display_3").innerHTML = "天";
+        document.getElementById("display_4").innerHTML = elapsed_hours;
+        document.getElementById("display_5").innerHTML = "时";
+        document.getElementById("display_6").innerHTML = elapsed_minutes;
+        document.getElementById("display_7").innerHTML = "分";
+        document.getElementById("display_8").innerHTML = elapsed_seconds;
+        document.getElementById("display_9").innerHTML = "秒";
+    }
+    //被绿则展示被绿表情图
+    function display_green_hat(){
+        var her_choose = document.choice_form.choose.value;
+        if(her_choose == "不再爱你，心系他人"){
+            document.getElementById("show_green_hat").src = "/static/images/被绿.jpg";
+        }
+    }
+</script>
+<div style="text-align:center;">
+    <h3 style="font-family:'Times New Roman';color:yellow;">Copyright@Ferry 2019</h3>
+</div>
+</body>
+</html>

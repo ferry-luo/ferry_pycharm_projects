@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_window history</title>
+</head>
+<body>
+<button onclick="go_forward()">向前</button>
+<button onclick="go_back()">向后</button>
+
+<script>
+    function go_forward() {
+        window.history.forward();
+    }
+
+    function go_back() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>

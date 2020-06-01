@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+<div id = "app">
+    <p style = "font-size:25px;">价格：{{products.price}}</p>
+    <button v-on:click = "increase" style = "font-size:25px;">点我</button>
+</div>
+
+<script>
+    var my_product = {"shop_id":1,"shop_name":"book","price":20};
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            products:my_product
+        },
+        methods:{
+            increase:function () {
+                this.products.shop_id++;
+            }
+        }
+    });
+    //如果我们需要在运行过程中实现属性的添加或删除，则可以使用全局 Vue，Vue.set 和 Vue.delete 方法。
+    /*
+    Vue.set( target, key, value )
+    Vue.delete( target, key )
+    target: 可以是对象或数组
+    key : 可以是字符串或数字
+    value: 可以是任何类型
+    */
+    Vue.set(my_product,'weight',0.5);
+    Vue.delete(my_product,'shop_name');
+    console.log(vm);
+    //我们通过使用 $watch 属性来实现数据的监听，$watch 必须添加在 Vue 实例之外才能实现正确的响应。
+    vm.$watch('products.shop_id',function(new_value,old_value){
+        alert("计数变化：" + old_value + "变为" + new_value);
+    })
+</script>
+</body>
+</html>

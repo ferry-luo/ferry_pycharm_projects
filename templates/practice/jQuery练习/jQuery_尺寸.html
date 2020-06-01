@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery_尺寸</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<div id="div1" style="height:100px;width:300px;padding:10px;margin:3px;border:1px solid blue;background-color:lightblue;"></div>
+<br>
+<button>显示 div 元素的尺寸</button>
+<p id = "p1"></p>
+
+<script>
+    $(function () {
+        $("button").click(function () {
+            alert("div宽度，不包括内边距、边框或外边距：" + $("#div1").width() + "\n"
+            + "div高度，不包括内边距、边框或外边距：" + $("#div1").height());
+
+            var t = "";
+            t += "div宽度，包括内边距：" + $("#div1").innerWidth() + "<br>";
+            t += "div高度，包括内边距：" + $("#div1").innerHeight() + "<br>";
+            t += "div宽度，包括内边距和边框：" + $("#div1").outerWidth() + "<br>";
+            t += "div高度，包括内边距和边框" + $("#div1").outerHeight() + "<br>";
+            $("#div1").html(t);
+        });
+    })
+</script>
+</body>
+</html>

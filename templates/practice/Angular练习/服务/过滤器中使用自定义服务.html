@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp">
+    在过滤器中使用服务:
+
+    <h1>{{255 | myFormat}}</h1>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    //创建名为hexafy的服务
+    app.service('hexafy',function () {
+        this.my_func = function (x) {
+            //转换为16进制值表示的字符串
+            return x.toString(16);
+        }
+    });
+    //创建名为myFormat的过滤器。hexafy为实参,h为形参
+    app.filter('myFormat',['hexafy',function (h) {
+        return function (x) {
+            //调用hexafy服务中的my_func()方法
+            return h.my_func(x);
+        }
+    }])
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <style>
+        #grad1 {
+            height: 150px;
+            width: 150px;
+            background-color: red; /* 浏览器不支持的时候显示 */
+            /*定径向渐变的半径长度为从圆心到离圆心最近的边*/
+            background-image: radial-gradient(closest-side at 60% 55%, red, yellow, black);
+        }
+
+        #grad2 {
+            height: 150px;
+            width: 150px;
+            background-color: red; /* 浏览器不支持的时候显示 */
+            /*指定径向渐变的半径长度为从圆心到离圆心最远的边*/
+            background-image: radial-gradient(farthest-side at 60% 55%, red, yellow, black);
+        }
+
+        #grad3 {
+            height: 150px;
+            width: 150px;
+            background-color: red; /* 浏览器不支持的时候显示 */
+            /*指定径向渐变的半径长度为从圆心到离圆心最近的角*/
+            background-image: radial-gradient(closest-corner at 60% 55%, red, yellow, black);
+        }
+
+        #grad4 {
+            height: 150px;
+            width: 150px;
+            background-color: red; /* 浏览器不支持的时候显示 */
+            /*指定径向渐变的半径长度为从圆心到离圆心最远的角。默认情况下为farthest-corner*/
+            background-image: radial-gradient(farthest-corner at 60% 55%, red, yellow, black);
+        }
+    </style>
+</head>
+<body>
+
+<h3>径向渐变 - 不同尺寸大小关键字的使用</h3>
+
+<p><strong>closest-side：</strong></p>
+<div id="grad1"></div>
+
+<p><strong>farthest-side：</strong></p>
+<div id="grad2"></div>
+
+<p><strong>closest-corner：</strong></p>
+<div id="grad3"></div>
+
+<p><strong>farthest-corner（默认）：</strong></p>
+<div id="grad4"></div>
+
+<p><strong>注意：</strong> Internet Explorer 9 及之前的版本不支持渐变。</p>
+
+</body>
+</html>

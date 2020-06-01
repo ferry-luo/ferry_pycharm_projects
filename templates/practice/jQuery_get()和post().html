@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery_get()和post()</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<button id="btn1">发送一个 HTTP GET 请求并获取返回结果</button>
+<button id="btn2">发送一个 HTTP POST 请求页面并获取返回内容</button>
+
+<script>
+    $(function () {
+        //$.get(URL,callback);
+        $("#btn1").click(function () {
+            $.get("https://www.runoob.com/try/ajax/demo_test.php",function (data,status) {
+                alert("数据：" + data + "\n状态：" + status);
+            });
+        });
+        //$.post(URL,data,callback);
+        $("#btn2").click(function () {
+            var d = {
+                name:"菜鸟教程",
+                url:"http://www.runoob.com"
+            };
+            $.post("https://www.runoob.com/try/ajax/demo_test.php",d,function (data,status) {
+                alert("数据：" + data + "\n状态：" + status);
+            });
+        });
+    })
+
+</script>
+</body>
+</html>

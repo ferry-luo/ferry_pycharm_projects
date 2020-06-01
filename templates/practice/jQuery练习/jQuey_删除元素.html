@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuey_删除元素</title>
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<p>这是一个段落。</p>
+<p class="italic"><i>这是另外一个段落。</i></p>
+<p class="italic"><i>这是另外一个段落。</i></p>
+<button id="btn1">移除所有  class="italic" 的 p 元素。</button>
+
+<div id="div1" style="height:100px;width:300px;border:1px solid black;background-color:yellow;">
+    这是 div 中的一些文本。
+    <p>这是在 div 中的一个段落。</p>
+    <p>这是在 div 中的另外一个段落。</p>
+</div>
+<br>
+<button id="btn2">清空div元素</button>
+
+<script>
+    $(function () {
+        $("#btn1").click(function () {
+            //remove() 方法删除被选元素及其子元素。
+            //删除 class="italic" 的所有 <p> 元素：
+            $("p").remove(".italic");
+        });
+        $("#btn2").click(function () {
+            //empty() 方法删除被选元素的子元素。
+            $("#div1").empty();
+        })
+    });
+</script>
+</body>
+</html>

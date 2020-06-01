@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+<p>你可以使用点号（.）来访问 JSON 对象的值：</p>
+
+<p id="demo"></p>
+<p id="demo2"></p>
+<script>
+
+    var myObj, x;
+    myObj = {"name": "runoob", "alexa": 10000, "site": null};
+    //用.来访问对象值
+    x = myObj.name;
+    document.getElementById("demo").innerHTML = x;
+    //用[]来访问对象值
+    x2 = myObj["alexa"];
+    document.getElementById("demo2").innerHTML = x2;
+
+</script>
+
+</body>
+</html>

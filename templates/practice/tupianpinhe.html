@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图像的拼合技术</title>
+    <style>
+        #list{
+            position:relative;
+        }
+        #list li{
+            position:absolute;
+            /*外边距顶部20px，左边20px*/
+            margin:20px 20px;
+            /*如果这里top的值大于0，则列表距离网页顶部边缘会更多，大于20px*/
+            top:0;
+            border:10px red;
+            padding:10px;
+            list-style:none;
+        }
+        #list li,#list a{
+            height:80px;
+            display:block;
+        }
+        #home{
+            left:0;
+            width:50px;
+            /*定义背景图像和它的位置（左边0px，顶部0px）*/
+            background:url("/static/images/小依.jpg") 0 0;
+        }
+        #news{
+            left:100px;
+            width:50px;
+            background:url("/static/images/小欣.jpg") -51px 0;
+        }
+        #xueshu{
+            left:200px;
+            width:50px;
+            background:url("/static/images/小甜.jpg") -102px 0;
+        }
+    </style>
+</head>
+<body>
+<ul id = "list">
+    <li id = "home"><a href = "http://home.baidu.com/" target = "_blank"></a></li>
+    <li id = "news"><a href = "http://news.baidu.com/" target = "_blank"></a></li>
+    <li id = "xueshu"><a href = "http://xueshu.baidu.com/" target = "_blank"></a></li>
+</ul>
+</body>
+</html>

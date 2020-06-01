@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confession to you</title>
+</head>
+<body background="/static/images/星星背景_009.gif">
+<div style="text-align:center">
+    <p style="color:hotpink;font-size:24px;font-family:华文行楷;">小姐姐，我关注你很久了，不知我能否住进你心里。</p>
+    <p style="color:hotpink;font-size:22px;font-family:华文行楷;">我愿是黑夜里的一盏灯，照亮你前行的道路。</p>
+    <p>
+        <a style="color:red;font-family:华文行楷;font-size:30px;" id="display_1"></a>
+        <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_2"></a>
+        <a style="color:mediumpurple;font-family:华文行楷;font-size:30px;" id="display_3"></a>
+        <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_4"></a>
+        <a style="color:lightcoral;font-family:华文行楷;font-size:30px;" id="display_5"></a>
+        <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_6"></a>
+        <a style="color:lightskyblue;font-family:华文行楷;font-size:30px;" id="display_7"></a>
+        <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_8"></a>
+        <a style="color:limegreen;font-family:华文行楷;font-size:30px;" id="display_9"></a>
+    </p>
+    <p style="color:hotpink;font-size:20px;font-family:'Times New Roman'">I want to confession to you with a song.</p>
+    <audio controls autoplay="autoplay">
+        <source src="/static/images/老鼠爱大米.mp3">
+    </audio>
+    <p style="color:hotpink;font-size:20px;font-family:楷体">你喜欢我吗？喜欢的话，请点击“喜欢”按钮；不喜欢的话就点击“不喜欢”按钮。</p>
+    <div class="button">
+        <button style="background-color:green;color:white;width:100px;height:50px;" class="left" id="keyi" onclick="confirm_ok()">喜欢</button>
+        <button style="background-color:red;color:white;width:100px;height:50px;" class="right" id="buhao" onclick="confirm_no()">不喜欢</button>
+    </div>
+    <p style="color:deeppink;font-size:24px;font-family:华文行楷;" id="show_happy"></p>
+</div>
+<script>
+    var t = setTimeout(cal_time_difference,500);
+    function cal_time_difference(){
+        var former_time = new Date("2018-12-21T00:00:00");
+        var f_time = former_time.getTime();
+        var f_yaer = former_time.getYear();
+        var f_month = former_time.getMonth();
+        var f_day = former_time.getDay();
+        var f_hour = former_time.getHours();
+        var f_minute = former_time.getMinutes();
+        var f_seconds = former_time.getSeconds();
+
+        var current_time = new Date();
+        var c_time = current_time.getTime();
+        var c_year = current_time.getYear();
+        var c_month = current_time.getMonth();
+        var c_day = current_time.getDay();
+        var c_hour = current_time.getHours();
+        var c_monute = current_time.getMinutes();
+        var c_seconds = former_time.getSeconds();
+
+        var used_time = c_time - f_time;
+        var used_days = Math.floor(used_time/(24*3600*1000));
+        var x1 = used_time%(24*3600*1000);  //计算天数后剩余的毫秒数
+        var used_hours = Math.floor(x1/(3600*1000));
+        var x2 = x1%(3600*1000);
+        var used_minutes = Math.floor(x2/(60*1000));
+        var x3 = x2%(60*1000);
+        var used_seconds = Math.floor(x3/(1000));
+        t = setTimeout(cal_time_difference,500);   //循环调用cal_time_difference函数以达到动态展示效果
+        //document.getElementById("display_time_difference").innerHTML = "你已经住进我心里"+used_days+"天"+used_hours+"小时"+used_minutes+"分"+used_seconds+"秒";
+        document.getElementById("display_1").innerHTML = "你已经住进我心里";
+        document.getElementById("display_2").innerHTML = used_days;
+        document.getElementById("display_3").innerHTML = "天";
+        document.getElementById("display_4").innerHTML = used_hours;
+        document.getElementById("display_5").innerHTML = "小时";
+        document.getElementById("display_6").innerHTML = used_minutes;
+        document.getElementById("display_7").innerHTML = "分";
+        document.getElementById("display_8").innerHTML = used_seconds;
+        document.getElementById("display_9").innerHTML = "秒";
+    }
+    //喜欢
+    function confirm_ok(){
+        document.getElementById("show_happy").innerHTML = "哈哈，那我们在一起吧！";
+        var s = "对方确认喜欢";
+        console.log(s);
+    }
+    //不喜欢
+    function confirm_no(){
+        window.alert("我愿意永远守护你，再考虑一下呗");
+        var s = "对方确认拒绝";
+        console.log(s);
+    }
+</script>
+</body>
+</html>

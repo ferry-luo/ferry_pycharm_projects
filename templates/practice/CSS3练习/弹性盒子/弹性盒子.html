@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <style>
+        .flex-container {
+            /*弹性盒子由弹性容器(Flex container)和弹性子元素(Flex item)组成。 */
+            /*弹性容器通过设置 display 属性的值为 flex 或 inline-flex将其定义为弹性容器。*/
+            /*弹性容器内包含了一个或多个弹性子元素。*/
+
+            /*-webkit代表chrome、safari私有属性*/
+            display: -webkit-flex;
+            /*-ms代表IE浏览器私有属性*/
+            display: -ms-flex;
+            /*-moz代表firefox浏览器私有属性*/
+            display: -moz-flex;
+            /*-o代表opera浏览器私有属性*/
+            display: -o-flex;
+
+            width: 1920px;
+            height: 250px;
+            background-color: lightgrey;
+        }
+
+        .flex-item {
+            background-color: cornflowerblue;
+            width: 600px;
+            height: 100px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="flex-container">
+    <div class="flex-item">flex item 1</div>
+    <div class="flex-item">flex item 2</div>
+    <div class="flex-item">flex item 3</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_window</title>
+</head>
+<body>
+<p id="demo"></p>
+
+<button onclick="open_my_window()">打开我的窗口</button>
+<button onclick="close_my_window()">关闭我的窗口</button>
+<script>
+    var w = window.innerWidth || document.documentElement.clientWidth;
+    var h = window.innerHeight || document.documentElement.clientHeight;
+    document.getElementById("demo").innerHTML = "浏览器窗口的宽度：" + w + ",高度：" + h;
+
+    function open_my_window() {
+        my_window = window.open("","_blank",width=200,height=100);
+    }
+
+    function close_my_window() {
+        my_window.close();
+    }
+</script>
+</body>
+</html>

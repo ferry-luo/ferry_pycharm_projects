@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+<body ng-app="myApp">
+
+<div ng-include="'https://c.runoob.com/runoobtest/angular_include.php'"></div>
+<table>
+    <tr ng-repeat="x in names">
+        <td>{{ x.Name }}</td>
+        <td>{{ x.Url }}</td>
+    </tr>
+</table>
+<script>
+    var app = angular.module('myApp', []);
+    // 默认情况下， ng-include 指令不允许包含其他域名的文件。如果你需要包含其他域名的文件，你需要设置域名访问白名单
+    app.config(function ($sceDelegateProvider) {
+        $sceDelegateProvider.resourceUrlWhitelist([
+            'https://c.runoob.com/runoobtest/**'
+        ]);
+    });
+    //此外，你还需要设置服务端允许跨域访问，设置方法可参考：PHP Ajax 跨域问题最佳解决方案。
+</script>
+<p>你需要设置服务端允许跨域访问，设置方法可参考 <a target="_blank" href="/w3cnote/php-ajax-cross-border.html">PHP Ajax 跨域问题最佳解决方案</a>。
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery_dataTables插件_客户端分页</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+</head>
+<body>
+<table id="table1" class="table table-condensed">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>001</td>
+            <td>zhang</td>
+            <td>98</td>
+        </tr>
+        <tr>
+            <td>002</td>
+            <td>wang</td>
+            <td>99</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    $(function () {
+        $("#table1").DataTable({
+
+        });
+    });
+</script>
+</body>
+</html>

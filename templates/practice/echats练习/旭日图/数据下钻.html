@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts 实例</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+//旭日图默认支持数据下钻，也就是说，当点击了扇形块之后，将以该扇形块的数据作为根节点，进一步显示该数据的细节。
+//在数据下钻后，图形的中间会出现一个用于返回上一层的图形，该图形的样式可以通过 levels[0] 配置。
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    var data = [{
+        name: 'Grandpa',
+        children: [{
+            name: 'Uncle Leo',
+            value: 15,
+            children: [
+                {
+                    name: 'Cousin Jack',
+                    value: 2
+                },
+                {
+                    name: 'Cousin Mary',
+                    value: 5,
+                    children: [
+                        {
+                            name: 'Jackson',
+                            value: 2
+                        }]
+                },
+                {
+                    name: 'Cousin Ben',
+                    value: 4
+                }
+            ]
+        }, {
+            name: 'Father',
+            value: 10,
+            children: [{
+                name: 'Me',
+                value: 5
+            }, {
+                name: 'Brother Peter',
+                value: 1
+            }]
+        }]
+    }, {
+        name: 'Nancy',
+        children: [{
+            name: 'Uncle Nike',
+            children: [{
+                name: 'Cousin Betty',
+                value: 1
+            }, {
+                name: 'Cousin Jenny',
+                value: 2
+            }]
+        }]
+    }];
+
+    option = {
+        series: {
+            type: 'sunburst',
+            // highlightPolicy: 'ancestor',
+            data: data,
+            radius: [0, '90%'],
+            label: {
+                rotate: 'radial'
+            }
+        }
+    };
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>

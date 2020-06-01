@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <style>
+        p.test {
+            width: 11em;
+            border: 1px solid #000000;
+            /*如果某个单词太长，不适合在一个区域内，它扩展到外面： */
+            /*CSS3中，自动换行属性允许您强制文本换行 - 即使这意味着分裂它中间的一个字*/
+
+            /*word-wrap允许对长的不可分割的单词进行分割并换行到下一行。*/
+            word-wrap:break-word;
+        }
+    </style>
+</head>
+<body>
+
+<p class="test"> This paragraph contains a very long word: thisisaveryveryveryveryveryverylongword. The long word will
+    break and wrap to the next line.</p>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts 实例</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+//配置了 series.data.itemStyle 的扇形块将会覆盖 series.levels.itemStyle 和 series.itemStyle 的设置。
+//下面，我们将整体的颜色设为灰色 #aaa，将最内层的颜色设为蓝色 blue，将 Aa、B 这两块设为红色 red。
+    // 指定图表的配置项和数据
+    var option = {
+        series: {
+            type: 'sunburst',
+            data: [{
+                name: 'A',
+                value: 10,
+                children: [{
+                    value: 3,
+                    name: 'Aa',
+                    itemStyle: {
+                        color: 'red'
+                    }
+                }, {
+                    value: 5,
+                    name: 'Ab'
+                }]
+            }, {
+                name: 'B',
+                children: [{
+                    name: 'Ba',
+                    value: 4
+                }, {
+                    name: 'Bb',
+                    value: 2
+                }],
+                itemStyle: {
+                    color: 'red'
+                }
+            }, {
+                name: 'C',
+                value: 3
+            }],
+            itemStyle: {    //设置整个旭日图的样式。
+                color: '#aaa'
+            },
+            levels: [{
+                // 留给数据下钻的节点属性
+            }, {
+                itemStyle: {
+                    color: 'blue'
+                }
+            }]
+        }
+    };
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="show_alert()">显示警告框</button>
+<button onclick="show_confirm()">显示确认框</button>
+<p id="demo"></p>
+<button onclick="show_tip()">显示提示框</button>
+<p id="demo2"></p>
+
+<script>
+    function show_alert() {
+        //警告框：当警告框出现后，用户需要点击确定按钮才能继续进行操作
+        window.alert("我是一个警告框");
+    }
+
+    function show_confirm() {
+        var x;
+        //确认框通常用于验证是否接受用户操作。当确认卡弹出时，用户可以点击 "确认" 或者 "取消" 来确定用户操作。当你点击 "确认", 确认框返回 true， 如果点击 "取消", 确认框返回 false。
+        var r = window.confirm("按下按钮");
+        if(r == true){
+            x = "你按下了\"确定\"按钮";
+        }
+        else{
+            x = "你按下了\"取消\"按钮";
+        }
+        document.getElementById("demo").innerHTML = x;
+    }
+    
+    function show_tip() {
+        //提示框经常用于提示用户在进入页面前输入某个值。当提示框出现后，用户需要输入某个值，然后点击确认或取消按钮才能继续操纵。如果用户点击确认，那么返回值为输入的值。如果用户点击取消，那么返回值为 null。
+        //prompt(text,defaultText)
+        //text:可选。要在对话框中显示的纯文本（而不是 HTML 格式的文本）。
+        //defaultText:可选。默认的输入文本。
+        var person = window.prompt("请输入你的名字","bob");
+        if(person != null && person != ""){
+            document.getElementById("demo2").innerHTML = "你好" + "," + person + ",今天心情如何？";
+        }
+    }
+</script>
+</body>
+</html>

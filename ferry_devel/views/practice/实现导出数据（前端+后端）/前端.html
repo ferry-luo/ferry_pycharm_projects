@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    $("#export-from").submit(function (e) {
+        e.preventDefault();
+        var data = {};
+        $(this).serializeArray().map(function (x) {
+            data[x.name] = x.value;
+        });
+        if (data["start_time"] && data["end_time"]) {
+            var url = ("api/export/results?start_time=" + data["start_time"] + "&end_time=" + data["end_time"]);
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            // 返回blob类型，该类型用来存储二进制数据
+            xhr.responseType = "blob";
+            xhr.onload = function () {
+                // 请求完成,执行回调函数
+                if (this.status === 200) {
+                    // 状态码为200
+                    var blob = this.response;
+                    var reader = new FileReader();
+                    // 转换为base64
+                    reader.readAsDataURL(blob);
+                    reader.onload = function (e) {
+                        // 转换完成，创建一个a标签用于下载
+                        var a = document.createElement('a');
+                        a.download = 'results.xls';
+                        a.href = e.target.result;
+                        // 修复firefox中无法触发click
+                        $("body").append(a);
+                        a.click();
+                        $(a).remove();
+                    }
+                }
+            };
+            // 发送ajax请求
+            xhr.send()
+        }
+    });
+</script>
+</body>
+</html>

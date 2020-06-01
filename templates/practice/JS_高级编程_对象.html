@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_高级编程_对象</title>
+</head>
+<body>
+<script>
+    var person_1 = new Object();
+    person_1.first_name = "ferry";
+    person_1.last_name = "luo";
+    person_1.age = 24;
+    document.write(person_1.first_name + " " + "is " + person_1.age + "years old");
+
+    person_2 = {
+        first_name:"jiegao",
+        last_name:"liu",
+        age:25
+    };
+    //用函数创建对象
+    function make_person(FirstName,LastName,RealAge) {
+        this.first_name = FirstName;
+        this.last_name = LastName;
+        this.real_age = RealAge;
+    }
+    my_father = new make_person("tom","luo",54);
+    document.write(my_father.first_name + " " + my_father.last_name + " " + "is " + my_father.real_age + "years old");
+</script>
+</body>
+</html>

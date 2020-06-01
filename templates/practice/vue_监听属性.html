@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_监听属性</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id = "app">
+    千米：<input type = "number" v-model = "kilometres">
+    米：<input type = "number" v-model = "metres">
+</div>
+<p id = "info"></p>
+
+<div id = "app2">
+    <p>计数器：{{counter}}</p>
+    <button v-on:click = "counter++">点我</button>
+</div>
+
+<script>
+    const vm = new Vue({
+        el:'#app',
+        data:{
+            kilometres:0,
+            metres:0
+        },
+        watch:{
+            kilometres:function(v){
+                this.kilometres = v;
+                this.metres = this.kilometres*1000;
+            },
+            metres:function(v){
+                this.metres = v;
+                this.kilometres = this.metres/1000;
+            }
+        }
+    });
+    //$watch是一个实例方法
+    vm.$watch('kilometres',function(new_value,old_value){
+        document.getElementById("info").innerHTML = "修改前千米，值为：" + old_value + "，修改后千米，值为：" + new_value;
+    });
+
+    new Vue({
+        el:'#app2',
+        data:{
+            counter:1
+        }
+    })
+</script>
+</body>
+</html>

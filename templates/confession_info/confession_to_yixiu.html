@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>告白一休</title>
+</head>
+<body background="/static/images/星星背景_009.gif">
+<div style="text-align:center">
+    <p style="color:hotpink;font-size:24px;font-family:华文行楷;">一休，我是乔碧萝，关注你很久了，不知我能否住进你心里。</p>
+    <P style="color:hotpink;font-size:22px;font-family:华文行楷;">我愿是黑夜里的一盏灯，照亮你前行的道路。</P>
+    <p>
+        <img id="false_photo" src="/static/images/照骗.jpg">
+    </p>
+    <p style="color:hotpink;font-size:20px;font-family:'Times New Roman'">I want to confession to you with a song.</p>
+    <audio controls autoplay="autoplay">
+        <source src="/static/images/老鼠爱大米.mp3">
+    </audio>
+    <p style="color:hotpink;font-size:20px;font-family:楷体">你喜欢我吗？喜欢的话，请在下方输入框输入f或F，并点击“喜欢”按钮。</p>
+    <input id="input_content" type="text" onchange="enter_tank()" value="">
+    <button style="color:hotpink;background-color:mediumspringgreen;font-family:新宋体;weight:80px;height:20px;" onclick="expose_real_photo()">喜欢</button>
+    <p id="expose_speak" style="color:lawngreen;font-size:22px;font-family:华文行楷;"></p>
+</div>
+<script>
+    //展示真实照片
+    function expose_real_photo(){
+        document.getElementById("false_photo").src="/static/images/Qiaobiluo.gif";
+        window.alert("没想到你会喜欢我，哈哈！你被骗了。");
+        var s = "用照骗成功骗到对方";
+        console.log(s);
+    }
+    //进入坦克
+    function enter_tank(){
+        var i = document.getElementById("input_content");
+        if(i.value == "f" || i.value == "F"){
+            document.getElementById("expose_speak").innerHTML="恭喜你进入坦克";
+            var s = "对方进入坦克";
+            console.log(s);
+        }
+    }
+</script>
+</body>
+</html>

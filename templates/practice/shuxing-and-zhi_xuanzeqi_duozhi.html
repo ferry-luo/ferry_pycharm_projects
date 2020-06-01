@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性和值选择器_多值</title>
+    <!--需注意的是：以空格符分开了的字符串。假如一个title属性值为welcome_baidu，另一个title属性值为welcome_b。则属性和值选择器_多值用"welcome"无效-->
+    <style>
+        [title ~= "welcome"]{
+            color:blue;
+        }
+        /*需注意的是：以"-"分隔*/
+        [title |= "en"]{
+            color:orangered;
+        }
+
+        form,input{
+            text-align:left;
+        }
+        input[type = "text"]{
+            width:100px;
+            height:10px;
+            /*上下外边距为0，左右外边距为10像素*/
+            margin:0 10px;
+            background-color: yellow;
+            /*设display:block则呈现为块，不写这条则呈现在同一行*/
+            display:block;
+        }
+        input[type = "submit"]{
+            width:60px;
+            height:auto;
+            margin:0 30px;
+            color:white;
+            background-color: orangered;
+            border-radius:10px;
+        }
+    </style>
+</head>
+<body>
+<h1>以下将会应用蓝色字体</h1>
+<h2 title = "welcome baidu">欢迎来到百度</h2>
+<a href = "http://www.baidu.com" target = "_blank">百度</a>
+<hr>
+<h1>以下也会应用蓝色字体</h1>
+<h2 title = "welcome b">欢迎来到B站</h2>
+<a href = "http://www.bilibili.com" target = "_blank">B站</a>
+<hr>
+<h2>适用</h2>
+<p title = "en-1">hello</p>
+<p title = "en-2">hi</p>
+<h2>不适用</h2>
+<p title = "ch-1">嗨喽</p>
+<p title = "ch-2">嗨</p>
+<hr>
+<form action = "/the_love_between_lfl_and_pty" method = "get">
+    first_name:<input type = "text" placeholder = "请输入名">
+    last_name:<input type = "text" placeholder = "请输入姓">
+    <input type = "submit" value = "确定">
+</form>
+</body>
+</html>

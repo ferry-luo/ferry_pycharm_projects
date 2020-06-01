@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪元素</title>
+    <style>
+        /*在每个 <h1>元素后面插入一幅图片*/
+        h1::after{
+            content:url("../../../static/images/小依.jpg")
+        }
+        /*.first-line其实就是p::first-line*/
+        p::first-line{
+            color:red;
+            /*小型的大写字体*/
+            font-variant:small-caps;
+        }
+        p::first-letter{
+            /*将首字设为蓝色且比默认字体大一些，默认大小是font-size:medium*/
+            color:blue;
+            font-size:xx-large;
+            /*font-size:xx-small;*/
+        }
+    </style>
+</head>
+<body>
+<h1>伪元素本质上是创建了一个虚拟容器(元素)，我们可以在其中添加内容或样式。</h1>
+<h1>在CSS3中，伪类用单冒号:表示；而伪元素用双冒号::表示。</h1>
+<p>apple apple apple apple apple apple apple apple apple apple apple apple apple apple
+    apple apple apple apple apple apple apple apple apple apple apple apple apple
+    apple apple apple apple apple apple apple apple apple apple apple apple apple
+</p>
+</body>
+</html>

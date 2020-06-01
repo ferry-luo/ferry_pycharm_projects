@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+<p>修改 JSON 对象的值。</p>
+
+<p id="demo"></p>
+
+<script>
+    var myObj, i, x = "";
+    myObj = {
+        "name": "runoob",
+        "alexa": 10000,
+        "sites":{
+            "site1":"www.runoob.com",
+            "site2":"m.runoob.com",
+            "site3":"c.runoob.com"
+        }
+    };
+    //修改值
+    myObj.sites.site1 = "www.google.com";
+    myObj.sites["site1"] = "www.google.com";
+    for(i in myObj.sites){
+        x += myObj.sites[i] + "<br>";
+    }
+
+    document.getElementById("demo").innerHTML = x;
+    //删除JSON对象属性
+    delete myObj.sites.site2;
+    delete myObj.sites.site3;
+</script>
+
+</body>
+</html>

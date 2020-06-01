@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浮动</title>
+    <style>
+        img{
+            /*如果图像是右浮动，下面的文本流将环绕在它左边*/
+            float:right;
+            width:200px;
+            height:130px;
+            margin:5px;
+        }
+        .float_clear img{
+            /*如果图像是左浮动，下面的文本流将环绕在它右边*/
+            float:left;
+            /*clear属性值为both则指定元素两侧不能出现浮动元素。故两个图不会在同一行呈现*/
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+<p>
+    <img src = "/static/images/图片浮动.png">
+    这是一些文本。这是一些文本。这是一些文本。
+    这是一些文本。这是一些文本。这是一些文本。
+    这是一些文本。这是一些文本。这是一些文本。
+    这是一些文本。这是一些文本。这是一些文本。
+    这是一些文本。这是一些文本。这是一些文本。
+    这是一些文本。这是一些文本。这是一些文本。
+    这是一些文本。这是一些文本。这是一些文本。
+    这是一些文本。这是一些文本。这是一些文本。
+    这是一些文本。这是一些文本。这是一些文本。
+    这是一些文本。这是一些文本。这是一些文本。
+</p>
+<h3>相邻的浮动元素</h3>
+<p>放大缩小网页，看会发生什么</p>
+<img src = "/static/images/小依.jpg">
+<img src = "/static/images/小甜.jpg">
+<img src = "/static/images/小欣.jpg">
+<img src = "/static/images/飞机杯.jpg">
+<img src = "/static/images/震动棒.jpg">
+<img src = "/static/images/实体娃娃.jpg">
+<div class = "float_clear">
+    <img src = "/static/images/杜蕾斯.jpg">
+    <img src = "/static/images/仿真阳具.jpg">
+    <p>clear 属性值为both则指定元素两侧不能出现浮动元素。故两个图不会在同一行呈现</p>
+</div>
+</body>
+</html>

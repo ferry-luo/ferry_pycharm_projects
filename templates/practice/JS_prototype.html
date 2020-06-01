@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_prototype</title>
+</head>
+<body>
+<p id="demo"></p>
+
+<script>
+    function make_person(FirstName,LastName,RealAge) {
+        this.first_name = FirstName;
+        this.last_name = LastName;
+        this.real_age = RealAge;
+    }
+    //使用 prototype 属性就可以给对象的构造函数添加新的属性、新的方法
+    make_person.prototype.nationality = "English";
+    make_person.prototype.full_name = function () {
+        return this.first_name + " " + this.last_name;
+    };
+    var my_father = new make_person("tom","luo",54);
+    document.getElementById("demo").innerHTML = "我的父亲是" + my_father.full_name() + "，教的课程是" + my_father.nationality + "。";
+</script>
+</body>
+</html>

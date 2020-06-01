@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我们的爱</title>
+</head>
+<body background = "/static/images/星星背景_009.gif">
+<div style = "display:-ms-flex;display:flex;">
+    <div style = "-ms-flex:65%;flex:65%;">
+        <p style = "color:hotpink;font-family:'Times New Roman';font-size:24px;">Dear TingYun Peng:</p>
+        <p style = "color:hotpink;font-family:华文行楷;font-size:24px;text-indent:2em;">
+            我没有特别喜欢吃的零食，没有特别喜欢听的歌，却有个特别喜欢的你。
+            比起天黑和鬼，我更怕你心酸和皱眉。
+            不想去到永远那么远，只想呆在你附近这么近。
+            一年四季会有很多意外,但最迷人的，还是遇见了你。
+            你是我光是想想都会偷着乐的人，甜不可言。
+        </p>
+        <p style = "color:hotpink;font-family:华文行楷;font-size:24px;text-indent:2em;">
+            虽然我不是你第一个喜欢的人，但我希望是与你相伴到老的人。陪你走完这一生，彼此温暖，互不辜负。
+        </p>
+        <p style = "text-align:center;">
+            <a style = "color:red;font-family:华文行楷;font-size:30px;" id = "display_1"></a>
+            <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_2"></a>
+            <a style="color:mediumpurple;font-family:华文行楷;font-size:30px;" id="display_3"></a>
+            <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_4"></a>
+            <a style="color:lightcoral;font-family:华文行楷;font-size:30px;" id="display_5"></a>
+            <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_6"></a>
+            <a style="color:lightskyblue;font-family:华文行楷;font-size:30px;" id="display_7"></a>
+            <a style="color:deeppink;font-family:'Times New Roman';font-size:30px;" id="display_8"></a>
+            <a style="color:limegreen;font-family:华文行楷;font-size:30px;" id="display_9"></a>
+        </p>
+        <div style = "text-align:center;">
+            <audio autoplay = "autoplay" controls>
+                <source src = "/static/images/粉色信笺.mp3">
+            </audio>
+        </div>
+        <div style = "text-align:center;">
+            <p style="color:hotpink;font-family:华文行楷;font-size:24px;text-align:center;">在下拉框点击选项后再点“查阅”按钮</p>
+            <form action = "/the_love_between_lfl_and_pty" method = "post" name = "choice_form">
+                {% csrf_token %}
+                <select name = "choose">
+                    <option>-请选择-</option>
+                    <option>x1</option>
+                    <option>x2</option>
+                </select>
+                <input type = "submit" style = "background-color:lightskyblue;color:white;width:50px;height:20px;" value = "查阅" onclick = "display_diff_scene()">
+            </form>
+        </div>
+        <p style="color:hotpink;font-family:华文行楷;font-size:24px;text-align:center;">视频展示</p>
+        <div style = "text-align:center;">
+            <!--<button onclick="play_pause()">播放/暂停</button>-->
+            <!--<button onclick="make_big()">放大</button>-->
+            <!--<button onclick="make_small()">原尺寸</button>-->
+            <video id="control_video" width = "800" height = "600" controls = "controls">
+                <source src = "/static/images/XX.mp4">
+            </video>
+        </div>
+    </div>
+    <div style = "-ms-flex:35%;flex:35%;text-align:center;">
+        <p style = "color:hotpink;font-family:华文行楷;font-size:24px;" id = "diff_say"></p>
+        <!--behavior属性控制滚动方式，derection控制滚动方向，weight和height控制滚动范围，hspace和vspace控制滚动矩形区域距周围的空白区域，loop属性控制滚动次数，默认是无限-->
+        <!--循环（loop为-1也是无限循环），scrollamount和scrolldelay控制滚动的速度和延时。-->
+        <!--onmouseover=this.stop() onmouseout=this.start() 表示当鼠标以上区域的时候滚动停止，当鼠标移开的时候又继续滚动。-->
+        <marquee id = "dynamic" behavior="scroll" direction="up" height="50px" loop="-1" scrollamount="20" scrolldelay="100" onmouseover="this.stop()" onmouseout="this.start()">
+            <img border="0" id = "show_diff_photo1" style = "width:600px;height:800px;" src = "/static/images/星星背景_009.gif">
+            <img border="0" id = "show_diff_photo2" style = "width:600px;height:800px;" src = "/static/images/星星背景_009.gif">
+            <img border="0" id = "show_diff_photo3" style = "width:600px;height:800px;" src = "/static/images/星星背景_009.gif">
+            <img border="0" id = "show_diff_photo4" style = "width:600px;height:800px;" src = "/static/images/星星背景_009.gif">
+        </marquee>
+    </div>
+</div>
+<script>
+    //动态展示时间差
+    setTimeout(cal_different_time,500);
+    function cal_different_time(){
+        var start_time = new Date("2019-12-31T00:00:00");
+        var s_time = start_time.getTime();
+        var current_time = new Date();
+        var c_time = current_time.getTime();
+        var diff_time = c_time - s_time;
+        var diff_days = Math.floor(diff_time/(24*60*60*1000));  //天数
+        var x1 = diff_time%(24*60*60*1000);
+        var diff_hours = Math.floor(x1/(60*60*1000));   //小时
+        var x2 = x1%(60*60*1000);
+        var diff_minutes = Math.floor(x2/(60*1000));    //分钟
+        var x3 = x2%(60*1000);
+        var diff_seconds = Math.floor(x3/(1000));   //秒数
+
+        setTimeout(cal_different_time,500);
+
+        document.getElementById("display_1").innerHTML = "我们已经在一起";
+        document.getElementById("display_2").innerHTML = diff_days;
+        document.getElementById("display_3").innerHTML = "天";
+        document.getElementById("display_4").innerHTML = diff_hours;
+        document.getElementById("display_5").innerHTML = "时";
+        document.getElementById("display_6").innerHTML = diff_minutes;
+        document.getElementById("display_7").innerHTML = "分";
+        document.getElementById("display_8").innerHTML = diff_seconds;
+        document.getElementById("display_9").innerHTML = "秒";
+    }
+    //不同选项则展示不同图片
+    function display_diff_scene(){
+        var person_choose = document.choice_form.choose.value;
+        var a = document.getElementById("dynamic");
+        a.height = "800";   //在未选择某个选项查阅前，marquee标签的height属性为0，则看不到滚动图片效果(在点击某选项查阅前，不希望滚动图片)。这里将marquee标签的height属性改为大于0的一个适当的数，便于看到滚动图片
+        console.log(a.height);
+        if(person_choose == "-请选择-"){
+            window.alert("请选择有效选项再查阅");
+        }
+        if(person_choose == "x1"){
+            document.getElementById("diff_say").innerHTML = "君山";
+            document.getElementById("show_diff_photo1").src = "/static/images/君山1.jpg";
+            document.getElementById("show_diff_photo2").src = "/static/images/君山2.jpg";
+            document.getElementById("show_diff_photo3").src = "/static/images/君山3.jpg";
+            document.getElementById("show_diff_photo4").src = "/static/images/君山4.jpg";
+        }
+        if(person_choose == "x2"){
+            document.getElementById("diff_say").innerHTML = "x2";
+            document.getElementById("show_diff_photo1").src = "/static/images/";
+            document.getElementById("show_diff_photo2").src = "/static/images/";
+            document.getElementById("show_diff_photo3").src = "/static/images/";
+            document.getElementById("show_diff_photo4").src = "/static/images/";
+        }
+    }
+    //视频控制之播放和暂停
+    var video_1 = document.getElementById("control_video");
+    function play_pause(){
+        if(video_1.paused){
+            video_1.play();
+        }
+        else{
+            video_1.pause();
+        }
+    }
+    //视频控制之放大
+    function make_big(){
+        video_1.width = 1920;
+        video_1.height = 1080;
+    }
+    //视频控制之原尺寸
+    function make_sall(){
+        video_1.width = 800;
+        video_1.height = 600;
+    }
+</script>
+</body>
+</html>

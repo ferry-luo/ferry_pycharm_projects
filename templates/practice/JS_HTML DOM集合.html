@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_HTML DOM集合</title>
+</head>
+<body>
+<p id="p1">Hello World!</p>
+
+<p id="p2">Hello Runoob!</p>
+
+<p id="demo"></p>
+
+<p>点击按钮修改 p 元素的背景颜色。</p>
+
+<button onclick="modify_color()">点我</button>
+<script>
+    /*
+    HTMLCollection 不是一个数组！
+
+    HTMLCollection 看起来可能是一个数组，但其实不是。
+
+    你可以像数组一样，使用索引来获取元素。
+
+    HTMLCollection 无法使用数组的方法： valueOf(), pop(), push(), 或 join() 。
+     */
+    var my_collection_1 = document.getElementsByTagName("p");
+    //集合中的元素可以通过索引(以 0 为起始位置)来访问
+    document.getElementById("demo").innerHTML = "第二个段落的内容为：<span style='color:red'>" + my_collection_1[1].innerHTML + "</span>";
+    //更改所有p标签的颜色
+    function modify_color() {
+        var my_collection = document.getElementsByTagName("p");
+        for(var i = 0;i < my_collection.length;i++){
+            my_collection[i].style.color = "red";
+        }
+    }
+</script>
+</body>
+</html>

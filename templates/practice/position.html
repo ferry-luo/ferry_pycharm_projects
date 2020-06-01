@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定位</title>
+    <style>
+        .static{
+            position:static;
+            border-width:5px;
+            border-color:red;
+            border-style:dotted;
+            right:10px;
+        }
+        p.changeless{
+            position:fixed;
+            bottom:30px;
+            right:5px;
+        }
+        b.absolute{
+            position:absolute;
+            top:100px;
+            left:200px;
+        }
+        .relative_left p{
+            position:relative;
+            left:-20px;
+        }
+        .relative_right p{
+            position:relative;
+            left:20px;
+        }
+        .sticky{
+            position:sticky;
+            bottom:0;
+            padding:50px;
+            background-color:mediumspringgreen;
+            border-style:dashed;
+            border-color:red;
+            border-width:5px;
+        }
+    </style>
+</head>
+<body>
+<h2>静态定位的元素不会受到top, bottom, left, right影响。所以是按默认的正常位置展示</h2>
+<p class = "static">该元素使用了静态定位</p>
+<h2>属性position的属性值为fixed，即使窗口是滚动的它也不会移动</h2>
+<p class = "changeless">该段落，即便是窗口滚动，它也不会移动</p>
+<p>1，此段落随窗口滚动而移动</p>
+<p>2，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<p>3，此段落随窗口滚动而移动</p>
+<b class = "absolute">
+    此加粗文本用了绝对定位：absolute 定位使元素的位置与文档流无关，因此不占据空间。
+    用absolute定位的元素会和其他元素重叠。例如：左20px;上100px有一个元素，再用一个同样位置的绝对定位元素则会发生重叠
+</b>
+<div class = "relative_left">
+    <p>1，此段落相对正常位置向左</p>
+</div>
+<div class = "relative_right">
+    <p>2，此段落相对正常位置向右</p>
+</div>
+<p>3，此段落为默认的正常位置</p>
+<div class = "sticky">
+    <p>此段落为粘性定位</p>
+</div>
+<div style = "padding-bottom:1000px;">
+    <p>滚动我</p>
+    <p>来回滚动我</p>
+    <p>滚动我</p>
+    <p>来回滚动我</p>
+    <p>滚动我</p>
+    <p>来回滚动我</p>
+</div>
+</body>
+</html>

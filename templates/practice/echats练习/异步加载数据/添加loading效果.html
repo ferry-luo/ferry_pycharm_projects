@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>第一个 ECharts 实例</title>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    // 如果异步加载需要一段时间，我们可以添加 loading 效果，ECharts 默认有提供了一个简单的加载动画。
+    // 只需要调用 showLoading 方法显示。数据加载完成后再调用 hideLoading 方法隐藏加载动画
+    myChart.showLoading();  // 开启 loading 效果
+
+    $.get('echarts_test_data.json', function (data) {
+        alert("可以看到 loading 字样。"); // 测试代码，用于查看 loading 效果
+        myChart.hideLoading();  // 隐藏 loading 效果
+        myChart.setOption({
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',    // 设置图表类型为饼图
+                    radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
+                    data: data.data_pie
+                }
+            ]
+        })
+    }, 'json');
+</script>
+</body>

@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回忆</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
+    <style>
+        /*通过 @keyframes 规则，您能够创建动画。  */
+        /*创建动画的原理是，将一套 CSS 样式逐渐变化为另一套样式。*/
+        /*在动画过程中，您能够多次改变这套 CSS 样式。*/
+        /*以百分比来规定改变发生的时间，或者通过关键词 "from" 和 "to"，等价于 0% 和 100%。*/
+        /*0% 是动画的开始时间，100% 动画的结束时间。 */
+        /*为了获得最佳的浏览器支持，您应该始终定义 0% 和 100% 选择器。*/
+        @keyframes header1_name_blink{
+            33%{
+            color:#ff4057;
+            }
+            66%{
+            color:#ff8260;
+            }
+        }
+        @keyframes contact_wechat_blink{
+            20%{
+                color:violet;
+            }
+            40%{
+                color:#ff4057;
+            }
+            60%{
+                color:#ff8260;
+            }
+            80%{
+                color:hotpink;
+            }
+        }
+        @keyframes contact_qq_blink{
+            20%{
+                color:violet;
+            }
+            40%{
+                color:#ff4057;
+            }
+            60%{
+                color:#ff8260;
+            }
+            80%{
+                color:hotpink;
+            }
+        }
+
+        body{
+            /*margin:10px;*/
+        }
+        div.gif{
+            text-align:center;
+        }
+        .header1_name{
+            /*animation用于设置6个动画属性*/
+            animation:header1_name_blink 4s 0.5s infinite;
+            text-align: center;
+            display:block;
+            color:rgb(218,36,173);
+            font-family:华文行楷;
+            padding:1px;
+        }
+        .search{
+            position:relative;
+        }
+        .drop_down_menu{
+            text-align:center;
+        }
+        select{
+            width:100px;
+            height:auto;
+            margin:auto;
+            border:1px solid lightblue;
+            border-radius:3px;
+        }
+        #input_information{
+            width:200px;
+        }
+        input[type = "submit"]{
+            width:auto;
+            height:28px;
+            color:white;
+            background-color: #4CAF50;
+            padding:5px 5px;
+            margin:auto;
+            border:none;
+            /*设置字符间距*/
+            letter-spacing:2em;
+            /*规定首行缩进量*/
+            text-indent:2em;
+            /*给元素添加圆角边框*/
+            border-radius:2px;
+            cursor:pointer;
+        }
+        .header_url{
+            list-style-type:none;
+            margin:0;
+            padding:0;
+            width:100%;
+            height:50px;
+            /*background:url("/static/images/导航栏背景图.png") -51px 0;*/
+            background:violet;
+        }
+        .story_url{
+            list-style-type:none;
+            margin:0;
+            padding:0;
+            width:100%;
+            background:blueviolet;
+        }
+        li{
+            margin:8px;
+            /*展示在同一行，此元素会被显示为内联元素，元素前后没有换行符。*/
+            display:inline;
+            padding:5px 5px;
+        }
+        li a{
+            display:block;
+            text-decoration:none;
+            color:white;
+        }
+        li a:hover{
+            color:orangered;
+        }
+
+        .all_memory{
+            float:left;
+        }
+        .contact_me{
+            float:right;
+        }
+        .contact_wechat{
+            float:right;
+            animation:contact_wechat_blink 2s 0.2s infinite;
+            color:rgb(218,36,173);
+            font:22px 宋体;
+            padding:1px;
+        }
+        .contact_wechat:hover{
+            cursor:pointer;
+        }
+        .contact_qq{
+            float:left;
+            animation:contact_qq_blink 2s 0.2s infinite;
+            color:rgb(218,36,173);
+            font:22px 宋体;
+            padding:1px;
+        }
+        .contact_qq:hover{
+            cursor:pointer;
+        }
+        #qq_card{
+            /*通过设display为none实现默认隐藏QQ名片*/
+            display:none;
+            position:absolute;
+            top:30px;
+            left:10px;
+        }
+        #qq_card_img{
+            width:130px;
+            height:130px;
+        }
+        #qq_card_desc{
+            font:18px 宋体;
+            color:orange;
+            text-align:center;
+            text-decoration:underline;
+            cursor:pointer;
+        }
+        #wechat_card{
+            /*通过设opacity为0实现默认隐藏微信名片*/
+            opacity:0;
+            position:absolute;
+            top:30px;
+            right:10px;
+        }
+        #wechat_card_img{
+            width:180px;
+            height:180px;
+        }
+
+        #memory_game,#memory_album,#memory_rotation_and_music_and_notice,#memory_story{
+            width:855px;
+            margin:20px 515px;
+        }
+        .game_title,.album_title{
+            text-align:center;
+            color:white;
+            padding:10px;
+            background:#D6E27C;
+        }
+        .games,.albums{
+            /*用到margin:auto达到居中*/
+            margin:auto;
+            width:855px;
+            height:1450px;
+            background:#F1F0CD;
+        }
+
+        .story_box_left,.story_box_middle{
+            margin-right:4%;
+            width:30%;
+            background:#F1F0CD;
+            /*将元素显示为行内块状元素，设置该属性后，其他的行内块级元素会排列在同一行。如果想要不排列在同一行，设display属性值为block*/
+            display:inline-block;
+        }
+        .story_box_right{
+            width:30%;
+            background:#F1F0CD;
+            display:inline-block;
+        }
+        .story_title{
+            text-align:center;
+            color:white;
+            padding:10px;
+            background:#8ab7a9;
+        }
+        .rotation{
+            width:500px;
+            height:300px;
+        }
+        .music_and_notice{
+            width:250px;
+            height:300px;
+        }
+        .rotation,.music_and_notice{
+            display:inline-block;
+            margin:0 20px;
+        }
+        .rotation_img img{
+            width:100%;
+            height:250px;
+        }
+        .rd{
+            /*class为rd和class为rotation_img的两个div，是同一级，利用相对定位可实现轮播图标与轮播图片堆叠在同一个父元素中*/
+            position:relative;
+            bottom:30px;
+            left:45%;
+        }
+        .rd em{
+            background-color:#CCCCCC;
+            margin:0 5px;
+            width:15px;
+            height:15px;
+            display:inline-block;
+            float:left;
+        }
+        .rd .active_slide{
+            background-color:#666666;
+        }
+        #tape_img{
+            width:250px;
+            height:150px;
+        }
+        .music_control{
+            text-align:center;
+        }
+        button{
+            background-color:orange;
+            border-radius:3px;
+        }
+        .notice_title{
+            background-color:#FCD276;
+        }
+        .notice_icon{
+            vertical-align:center;
+            width:10%;
+            height:5%;
+        }
+
+        div.memory_box_1{
+            /*用到margin:auto达到居中*/
+            margin:auto;
+            width:855px;
+            height:285px;
+            /*border:1px solid grey;*/
+        }
+        div.memory_box_2{
+            /*用到margin:auto达到居中*/
+            margin:auto;
+            width:855px;
+            height:1140px;
+            /*border:1px solid grey;*/
+        }
+        div.img{
+            margin:10px;
+            border:2px solid burlywood;
+            padding:5px 5px;
+            width:250px;
+            height:250px;
+            float:left;
+            opacity:1;
+        }
+        div.img:hover{
+            border:2px solid red;
+            opacity:0.5;
+        }
+        div.img img{
+            width:100%;
+            height:200px;
+        }
+        p.image_desc{
+            padding:1px;
+            text-align:center;
+        }
+        div.bottom{
+            text-align:center;
+            color:orangered;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <b class = "contact_qq" onclick = "show_qq_card()">QQ名片</b>
+    <div id = "qq_card">
+        <img id = "qq_card_img" src = "/static/images/QQ二维码.jpg">
+        <p id = "qq_card_desc" onclick = "hide_qq_card()">关闭</p>
+    </div>
+</div>
+<div class = "contact_wechat" >
+    <b onmouseover = "show_wechat_card()" onmouseout = "hide_wechat_card()">关注微信</b>
+    <div id = "wechat_card">
+        <img id = "wechat_card_img" src = "/static/images/微信二维码.jpg">
+    </div>
+</div>
+<div class = "gif">
+    <img src = "/static/images/14.gif">
+</div>
+<div class = "header1">
+    <h1 class = "header1_name">ferry的回忆</h1>
+</div>
+<div class = "gif">
+    <img src = "/static/images/15.gif">
+</div>
+<form id = "search" name = "person_form" class = "search" method = "get" action = "/go_ferry_memory">
+    <div class = "drop_down_menu">
+        <select name = "category_choice">
+            <!--<option>-请选择类别-</option>-->
+            <!--<option>导航栏链接</option>-->
+            <!--<option>相册标题</option>-->
+            {% for i in status_list %}
+            <option>{{i}}</option>
+            {% endfor %}
+        </select>
+        <input id = "input_information" name = "keyboard" type = "text" size = "14" placeholder = "请输入您想检索的内容">
+        <input id = "submit_information" type = "submit" value = "搜索" onclick = "judge_input_information()">
+    </div>
+</form>
+<ul class = "header_url">
+    <li class = "all_memory"><a href = "/TingyunPeng_0301" target = "_blank">生日祝福</a></li>
+    <li class = "all_memory"><a href = "/the_love_between_lfl_and_pty" target = "_blank">甜蜜爱情</a></li>
+    <li class = "contact_me"><a href = "/contact_us" target = "_blank"><b>联系我</b></a></li>
+</ul>
+
+<div id = "memory_rotation_and_music_and_notice">
+    <div class = "rotation">
+        <div class = "rotation_img" id = "rotation_img">
+            <img border="0" id = "show_diff_photo" src = "/static/images/初中毕业照.jpeg">
+        </div>
+        <div class = "rd">
+            <em id = "1"></em>
+            <em id = "2"></em>
+            <em id = "3"></em>
+        </div>
+    </div>
+    <div class = "music_and_notice">
+        <div class = "music">
+            <div class = "tape">
+                <img id = "tape_img" src = "http://ferry1119.com:8000/static/images/tape_A.png">
+            </div>
+            <div class = "music_control">
+                <button onclick = "play_pause()">播放/暂停</button>
+                <button onclick = "flip()">翻转</button>
+                <button onclick = "volume_increase()">音量+</button>
+                <button onclick = "volume_decrease()">音量-</button>
+            </div>
+        </div>
+        <div class = "notice">
+            <div class = "notice_title">
+                <b>网站公告</b>
+                <img class = "notice_icon" src = "/static/images/喇叭.png">
+            </div>
+            <div class = "notice_content">
+                欢迎各位网友光临
+                <br>
+                如有需求可联系站长
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id = "memory_game">
+    <div class = "game_title">
+        <span>游戏回顾</span>
+    </div>
+
+    <div class = "games">
+        <div class = "img">
+            <a href = "/go_ferry_memory_qimadazhang" target = "_blank">
+                <img src = "/static/images/骑马打仗.jpg">
+            </a>
+            <p class = "image_desc">骑马打仗</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_danzhu" target = "_blank">
+                <img src = "/static/images/弹珠.jpg">
+            </a>
+            <p class = "image_desc">弹珠</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_laoyingzhuaxiaoji" target = "_blank">
+                <img src = "/static/images/老鹰抓小鸡.jpg">
+            </a>
+            <p class = "image_desc">老鹰抓小鸡</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_fansheng" target = "_blank">
+                <img src = "/static/images/翻绳.jpg">
+            </a>
+            <p class = "image_desc">翻绳</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_doujiao" target = "_blank">
+                <img src = "/static/images/斗脚.jpg">
+            </a>
+            <p class = "image_desc">斗脚</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_zhuomicang" target = "_blank">
+                <img src = "/static/images/捉迷藏.jpg">
+            </a>
+            <p class = "image_desc">捉迷藏</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_tiaosheng" target = "_blank">
+                <img src = "/static/images/跳绳.jpg">
+            </a>
+            <p class = "image_desc">跳绳</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_paoshizi" target = "_blank">
+                <img src = "/static/images/抛石子.jpg">
+            </a>
+            <p class = "image_desc">抛石子</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_dashuipiao" target = "_blank">
+                <img src = "/static/images/打水漂.jpg">
+            </a>
+            <p class = "image_desc">打水漂</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_huaijiuzhangji" target = "_blank">
+                <img src = "/static/images/怀旧掌机.jpg">
+            </a>
+            <p class = "image_desc">怀旧掌机</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_xiaobawang" target = "_blank">
+                <img src = "/static/images/小霸王游戏机.jpg">
+            </a>
+            <p class = "image_desc">小霸王游戏机</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_baolimotuo" target = "_blank">
+                <img src = "/static/images/暴力摩托.jpg">
+            </a>
+            <p class = "image_desc">暴力摩托</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_fankongjingying" target = "_blank">
+                <img src = "/static/images/反恐精英.jpg">
+            </a>
+            <p class = "image_desc">反恐精英</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_dixiacheng" target = "_blank">
+                <img src = "/static/images/地下城与勇士.jpg">
+            </a>
+            <p class = "image_desc">地下城与勇士</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_jipinfeiche" target = "_blank">
+                <img src = "/static/images/极品飞车14.jpg">
+            </a>
+            <p class = "image_desc">极品飞车</p>
+        </div>
+    </div>
+</div>
+
+<div id = "memory_story">
+    <div class = "story_box_left">
+        <div class = "story_title">
+            <span>一</span>
+        </div>
+        <ul class = "story_url">
+            <li>
+                <a href = "/go_ferry_memory_daifanshangxue" target = "_blank">带饭上学</a>
+            </li>
+            <li>
+                <a href = "/go_ferry_memory_fangbianpao" target = "_blank">放鞭炮</a>
+            </li>
+        </ul>
+    </div>
+    <div class = "story_box_middle">
+        <div class = "story_title">
+            <span>二</span>
+        </div>
+        <ul class = "story_url">
+            <li>
+                <a href = "/go_ferry_memory_qinlao" target = "_blank">勤劳的养成</a>
+            </li>
+            <li>
+                <a href = "/" target = "_blank">故事2</a>
+            </li>
+        </ul>
+    </div>
+    <div class = "story_box_right">
+        <div class = "story_title">
+            <span>三</span>
+        </div>
+        <ul class = "story_url">
+            <li>
+                <a href = "" target = "">故事1</a>
+            </li>
+            <li>
+                <a href = "/" target = "_blank">故事2</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id = "memory_album">
+    <div class = "album_title">
+        <span>相册概览</span>
+    </div>
+
+    <div class = "albums">
+        <div class = "img">
+            <a href = "/go_ferry_memory_chuzhong" target = "_blank">
+                <img src = "/static/images/初中毕业照_低分辨率.png">
+            </a>
+            <p class = "image_desc">初中</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_gaozhong" target = "_blank">
+                <img src = "/static/images/高中毕业照_低分辨率.png">
+            </a>
+            <p class = "image_desc">高中</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_daxue" target = "_blank">
+                <img src = "/static/images/本科毕业照_低分辨率.png">
+            </a>
+            <p class = "image_desc">大学</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_longmenshiku" target = "_blank">
+                <img src = "/static/images/龙门石窟_低分辨率.png">
+            </a>
+            <p class = "image_desc">龙门石窟</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_zhujiangxincheng" target = "_blank">
+                <img src = "/static/images/珠江新城.jpg">
+            </a>
+            <p class = "image_desc">珠江新城</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_zhongshandaxue" target = "_blank">
+                <img src = "/static/images/中山大学_低分辨率.png">
+            </a>
+            <p class = "image_desc">中山大学</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_baiyunshan" target = "_blank">
+                <img src = "/static/images/白云山_低分辨率.png">
+            </a>
+            <p class = "image_desc">白云山</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_yuexiushan" target = "_blank">
+                <img src = "/static/images/越秀山_低分辨率.png">
+            </a>
+            <p class = "image_desc">越秀山</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_yuyinshanfang" target = "_blank">
+                <img src = "/static/images/余荫山房_低分辨率.png">
+            </a>
+            <p class = "image_desc">余荫山房</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_hashitate" target = "_blank">
+                <img src = "/static/images/哈施塔特小镇_低分辨率.png">
+            </a>
+            <p class = "image_desc">哈施塔特小镇和罗浮山</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_shamian" target = "_blank">
+                <img src = "/static/images/沙面_低分辨率.png">
+            </a>
+            <p class = "image_desc">沙面</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_shangxiajiu" target = "_blank">
+                <img src = "/static/images/上下九步行街_低分辨率.png">
+            </a>
+            <p class = "image_desc">上下九步行街</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_manguyuan" target = "_blank">
+                <img src = "/static/images/曼谷园_低分辨率.png">
+            </a>
+            <p class = "image_desc">曼谷园</p>
+        </div>
+
+        <div class = "img">
+            <a href = "/go_ferry_memory_baishuizhai" target = "_blank">
+                <img src = "/static/images/白水寨_低分辨率.png">
+            </a>
+            <p class = "image_desc">白水寨</p>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div>
+    <audio controls id = "background_music" hidden = "hidden" autoplay = "autoplay" loop = "loop">
+        <source src = "/static/images/Dreamcatcher.mp3">
+    </audio>
+</div>
+
+<div class = "bottom">
+    <h3>copyright@Ferry</h3>
+</div>
+</body>
+<script>
+    //校验输入框中内容
+    function judge_input_information(){
+        //获取选择的检索类别
+        var category = document.person_form.category_choice.value;
+        //获取输入的内容
+        var input_information = document.getElementById("input_information").value;
+
+        if(category == "-请选择类别-"){
+            window.alert("您还未选择要检索的类别");
+        }
+        else if(category == "导航栏链接"){
+            if(input_information == ""){
+                window.alert("您还未输入要检索的内容啊");
+            }
+            else{
+                //完全匹配
+//                if(input_information == "生日祝福"){
+//                    document.getElementById("search").action = "/TingyunPeng_0301";
+//                }
+//                else if(input_information == "甜蜜爱情"){
+//                    document.getElementById("search").action = "/the_love_between_lfl_and_pty";
+//                }
+//                else if(input_information == "联系我"){
+//                    document.getElementById("search").action = "/contactus";
+//                }
+
+                var reg = new RegExp(input_information);
+                console.log(reg);
+                //用indexOf方法匹配
+//                if("生日祝福".indexOf(input_information) >= 0){
+//                    document.getElementById("search").action = "/TingyunPeng_0301";
+//                }
+
+                //用match方法匹配
+//                if("生日祝福".match(reg)){
+//                    document.getElementById("search").action = "/TingyunPeng_0301";
+//                }
+
+                //用test方法正则匹配
+                if(reg.test("生日祝福")) {
+                    document.getElementById("search").action = "/TingyunPeng_0301";
+                }
+                else if(reg.test("甜蜜爱情")){
+                    document.getElementById("search").action = "/the_love_between_lfl_and_pty";
+                }
+                else if(reg.test("联系我")){
+                    document.getElementById("search").action = "/contact_us";
+                }
+                else{
+                    window.alert("找不到相关内容");
+                }
+            }
+        }
+        else if(category == "相册标题"){
+            if(input_information == ""){
+                window.alert("您还未输入要检索的内容")
+            }
+            else{
+                //完全匹配
+//                if(input_information == "初中"){
+//                    document.getElementById("search").action = "/go_ferry_memory_chuzhong";
+//                }
+//                else if(input_information == "高中"){
+//                    document.getElementById("search").action = "/go_ferry_memory_gaozhong";
+//                }
+//                else if(input_information == "大学"){
+//                    document.getElementById("search").action = "/go_ferry_memory_daxue";
+//                }
+//                else if(input_information == "龙门石窟"){
+//                    document.getElementById("search").action = "/go_ferry_memory_longmenshiku";
+//                }
+//                else if(input_information == "珠江新城"){
+//                    document.getElementById("search").action = "/go_ferry_memory_zhujiangxincheng";
+//                }
+//                else if(input_information == "中山大学"){
+//                    document.getElementById("search").action = "/go_ferry_memory_zhongshandaxue";
+//                }
+//                else if(input_information == "白云山"){
+//                    document.getElementById("search").action = "/go_ferry_memory_baiyunshan";
+//                }
+//                else if(input_information == "越秀山"){
+//                    document.getElementById("search").action = "/go_ferry_memory_yuexiushan";
+//                }
+//                else if(input_information == "余荫山房"){
+//                    document.getElementById("search").action = "/go_ferry_memory_yuyinshanfang";
+//                }
+//                else if(input_information == "哈施塔特小镇和罗浮山"){
+//                    document.getElementById("search").action = "/go_ferry_memory_hashitate";
+//                }
+//                else if(input_information == "沙面"){
+//                    document.getElementById("search").action = "/go_ferry_memory_shamian";
+//                }
+//                else if(input_information == "上下九步行街"){
+//                    document.getElementById("search").action = "/go_ferry_memory_shangxiajiu";
+//                }
+//                else if(input_information == "曼谷园"){
+//                    document.getElementById("search").action = "/go_ferry_memory_manguyuan";
+//                }
+//                else if(input_information == "白水寨"){
+//                    document.getElementById("search").action = "/go_ferry_memory_baishuizhai";
+//                }
+
+                var reg = new RegExp(input_information,i);
+                //用indexOf方法匹配,  stringObject.indexOf(searchvalue,fromindex)    indexOf()方法可返回某个指定的字符串值在字符串中首次出现的位置。
+//                if("初中".indexOf(input_information) >= 0){
+//                    document.getElementById("search").action = "/go_ferry_memory_chuzhong";
+//                }
+
+                //用match方法匹配,   如果没有找到任何匹配的文本，match()将返回 null。否则，它将返回一个数组，其中存放了与它找到的匹配文本有关的信息。
+//                if("初中".match(reg)){
+//                    document.getElementById("search").action = "/go_ferry_memory_chuzhong";
+//                }
+
+                //用test方法正则匹配,  如果字符串 string 中含有与 RegExpObject 匹配的文本，则返回 true，否则返回 false。
+                if(reg.test("初中")){
+                    document.getElementById("search").action = "/go_ferry_memory_chuzhong";
+                }
+                else if(reg.test("高中")){
+                    document.getElementById("search").action = "/go_ferry_memory_gaozhong";
+                }
+                else if(reg.test("大学")){
+                    document.getElementById("search").action = "/go_ferry_memory_daxue";
+                }
+                else if(reg.test("龙门石窟")){
+                    document.getElementById("search").action = "/go_ferry_memory_longmenshiku";
+                }
+                else if(reg.test("珠江新城")){
+                    document.getElementById("search").action = "/go_ferry_memory_zhujiangxincheng";
+                }
+                else if(reg.test("中山大学")){
+                    document.getElementById("search").action = "/go_ferry_memory_zhongshandaxue";
+                }
+                else if(reg.test("白云山")){
+                    document.getElementById("search").action = "/go_ferry_memory_baiyunshan";
+                }
+                else if(reg.test("越秀山")){
+                    document.getElementById("search").action = "/go_ferry_memory_yuexiushan";
+                }
+                else if(reg.test("余荫山房")){
+                    document.getElementById("search").action = "/go_ferry_memory_yuyinshanfang";
+                }
+                else if(reg.test("哈施塔特小镇和罗浮山")){
+                    document.getElementById("search").action = "/go_ferry_memory_hashitate";
+                }
+                else if(reg.test("沙面")){
+                    document.getElementById("search").action = "/go_ferry_memory_shamian";
+                }
+                else if(reg.test("上下九步行街")){
+                    document.getElementById("search").action = "/go_ferry_memory_shangxiajiu";
+                }
+                else if(reg.test("曼谷园")){
+                    document.getElementById("search").action = "/go_ferry_memory_manguyuan";
+                }
+                else if(reg.test("白水寨")){
+                    document.getElementById("search").action = "/go_ferry_memory_baishuizhai";
+                }
+                else{
+                    window.alert("找不到相关内容")
+                }
+            }
+        }
+    }
+
+    //展示QQ二维码
+    function show_qq_card(){
+        var x = document.getElementById("qq_card").style;
+        x.display = "block";
+    }
+    //隐藏QQ二维码
+    function hide_qq_card(){
+        var x = document.getElementById("qq_card").style;
+        x.display = "none";
+    }
+    //展示微信二维码
+    function show_wechat_card(){
+        var x = document.getElementById("wechat_card").style;
+        x.opacity = 1;
+    }
+    //隐藏微信二维码
+    function hide_wechat_card(){
+        var x = document.getElementById("wechat_card").style;
+        x.opacity = 0;
+    }
+
+    //控制音频的播放与暂停
+    function play_pause(){
+        var my_audio = document.getElementById("background_music");
+        if(my_audio.paused){
+            my_audio.play();
+        }
+        else{
+            my_audio.pause();
+        }
+    }
+    //控制磁带AB面的翻转
+    function flip(){
+        var my_tape_type = document.getElementById("tape_img");
+        var my_tape_music = document.getElementById("background_music");
+        console.log("磁带图为：" + my_tape_type.src);
+        if(my_tape_type.src == "http://ferry1119.com:8000/static/images/tape_A.png"){
+            my_tape_type.src = "http://ferry1119.com:8000/static/images/tape_B.png";
+            my_tape_music.src = "http://ferry1119.com:8000/static/images/anxiang.mp3";
+        }
+        else{
+            my_tape_type.src = "http://ferry1119.com:8000/static/images/tape_A.png";
+            my_tape_music.src = "http://ferry1119.com:8000/static/images/Dreamcatcher.mp3";
+        }
+    }
+    //控制音量增加
+    function volume_increase(){
+        var my_volume = document.getElementById("background_music").volume;
+        console.log(my_volume);
+        if(my_volume < 1){
+            document.getElementById("background_music").volume = (my_volume + 0.1).toFixed(1);  //利用toFixed控制精度，保留1位小数
+        }
+        else if(my_volume == 1){
+            window.alert("音量已经最大，请尝试调节操作系统的音量和其他设备等");
+        }
+    }
+    //控制音量减少
+    function volume_decrease(){
+        var my_volume = document.getElementById("background_music").volume;
+        console.log(my_volume);
+        if(my_volume > 0){
+            document.getElementById("background_music").volume = (my_volume - 0.1).toFixed(1);
+        }
+        else if(my_volume == 0){
+            window.alert("音量已经为零，无法再调低音量");
+        }
+    }
+
+    //setTimeout()和setInterval()经常被用来处理延时和定时任务。
+    //setTimeout()方法用于在指定的毫秒数后调用函数或计算表达式,而setInterval()则可以在每隔指定的毫秒数循环调用函数或表达式，直到clearInterval把它清除。
+    //从定义上我们可以看到两个函数十分类似，只不过前者执行一次，而后者可以执行多次，两个函数的参数也相同，第一个参数是要执行的code或句柄，第二个是延迟的毫秒数。
+
+    //控制图片轮播
+    var my_diff_photo = document.getElementById("show_diff_photo");
+    var photos = ["/static/images/初中毕业照.jpeg", "/static/images/高中毕业照.jpeg", "/static/images/本科毕业照.png"];
+    var num = 0;
+    setInterval(function regular_diff_photo(){
+        my_diff_photo.src = photos[num];
+        if(num == 0){
+            document.getElementById("1").className = "active_slide";
+            document.getElementById("2").className = "";
+            document.getElementById("3").className = "";
+        }
+        if(num == 1){
+            document.getElementById("2").className = "active_slide";
+            document.getElementById("1").className = "";
+            document.getElementById("3").className = "";
+        }
+        if(num == 2){
+            document.getElementById("3").className = "active_slide";
+            document.getElementById("1").className = "";
+            document.getElementById("2").className = "";
+        }
+        num++;
+        num = (num == photos.length)?0:num;
+    },2000);
+</script>
+</html>
