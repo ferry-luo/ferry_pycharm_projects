@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="float:right;">
+    <a>嘿！{{the_user}}，欢迎你</a>
+</div>
+<!--导航栏-->
+<nav>
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/event_manage">发布会管理系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/event_manage">发布会</a></li>
+                <li class="active"><a href="#">嘉宾</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">{{the_user}}</a></li>
+                <li><a href="/release_conference_logout">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--嘉宾列表-->
+<div class="row" style="padding-top:80px;">
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>姓名</th>
+                <th>手机号码</th>
+                <th>邮箱</th>
+                <th>是否签到</th>
+                <th>发布会</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for g in guests %}
+            <tr>
+                <td>{{g.real_name}}</td>
+                <td>{{g.telephone}}</td>
+                <td>{{g.email}}</td>
+                <td>{{g.sign_in}}</td>
+                <td>{{data.0.event_name}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--列表分页器-->
+<div class="pagination">
+    <span class="step-links">
+        {% if guests.has_previous %}
+        <a href="?page={{guests.previous_page_number}}">上一页</a>
+        {% endif %}
+        <span class="current">
+            页{{guests.number}} of {{guests.paginator.num_pages}}
+        </span>
+        {% if guests.has_next %}
+        <a href="?page={{guests.next_page_number}}">下一页</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

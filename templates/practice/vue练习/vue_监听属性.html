@@ -7,44 +7,45 @@
     <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
 </head>
 <body>
-<div id = "app">
-    千米：<input type = "number" v-model = "kilometres">
-    米：<input type = "number" v-model = "metres">
+<div id="app1">
+    千米 : <input type="text" v-model="kilometers">
+    米 : <input type="text" v-model="meters">
 </div>
-<p id = "info"></p>
+<p id="info"></p>
 
-<div id = "app2">
+<div id="app2">
     <p>计数器：{{counter}}</p>
-    <button v-on:click = "counter++">点我</button>
+    <button v-on:click="counter++">点我</button>
 </div>
 
 <script>
     const vm = new Vue({
-        el:'#app',
-        data:{
-            kilometres:0,
-            metres:0
+        el: '#app1',
+        data: {
+            kilometers: 0,
+            meters: 0
         },
-        watch:{
-            kilometres:function(v){
-                this.kilometres = v;
-                this.metres = this.kilometres*1000;
+        // 监听属性 watch，我们可以通过 watch 来响应数据的变化
+        watch: {
+            kilometers: function (val) {
+                this.kilometers = val;
+                this.meters = this.kilometers * 1000
             },
-            metres:function(v){
-                this.metres = v;
-                this.kilometres = this.metres/1000;
+            meters: function (val) {
+                this.kilometers = val / 1000;
+                this.meters = val;
             }
         }
     });
     //$watch是一个实例方法
-    vm.$watch('kilometres',function(new_value,old_value){
+    vm.$watch('kilometres', function (new_value, old_value) {
         document.getElementById("info").innerHTML = "修改前千米，值为：" + old_value + "，修改后千米，值为：" + new_value;
     });
 
     new Vue({
-        el:'#app2',
-        data:{
-            counter:1
+        el: '#app2',
+        data: {
+            counter: 1
         }
     })
 </script>

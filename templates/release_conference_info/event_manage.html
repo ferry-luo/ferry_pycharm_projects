@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="float:right;">
+    <a>嘿！{{the_user}}，欢迎你</a>
+</div>
+<!--导航栏-->
+<nav>
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/event_manage">发布会管理系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">发布会</a></li>
+                <li><a href="/guest_manage">嘉宾</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">{{the_user}}</a></li>
+                <li><a href="/release_conference_logout">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--发布会列表-->
+<div class="row" style="padding-top:80px;">
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>发布会ID</th>
+                <th>名称</th>
+                <th>发布会状态</th>
+                <th>发布会地址</th>
+                <th>发布会开始时间</th>
+                <th>签到</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for e in events %}
+            <tr>
+                <td>{{e.event_id}}</td>
+                <td>{{e.event_name}}</td>
+                <td>{{e.event_status}}</td>
+                <td>{{e.event_address}}</td>
+                <td>{{e.event_start_time}}</td>
+                <td>
+                    <a href="/sign_index/{{e.event_id}}" target="__blank">马上签到</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--发布会搜索表单-->
+<div class="page-header" style="padding-top:60px;">
+    <div id="nav" class="navbar-collapse collapse">
+        <form class="navbar-form" method="get" action="/search_event_name">
+            <div class="form-group">
+                <input name="event_name" type="text" placeholder="发布会名称">
+            </div>
+            <button type="submit" class="btn btn-success">搜索</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -8,14 +8,16 @@
 </head>
 <body>
 <div id = "app">
-    <h1 v-show = "see">hello</h1>
+    <h1 v-show="see">hello</h1>
+    <h2 v-show="see2 == 1">vue框架</h2>
 </div>
 
 <script>
     new Vue({
         el:'#app',
         data:{
-            see:true
+            see:true,
+            see2:1
         }
     })
 </script>

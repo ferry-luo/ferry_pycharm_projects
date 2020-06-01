@@ -14,9 +14,10 @@
 <body>
 
 <div id = "app">
-    <label for = "r1">修改颜色</label><input type = "checkbox" v-model = "use" id = "r1">
+    <!--for 属性规定 label 与哪个表单元素绑定。for 属性命名一个目标表单 id-->
+    <label for = "r1">修改颜色</label><input type = "checkbox" v-model="use" id = "r1">
     <br>
-    <div v-bind:class = "{class1:use}">
+    <div v-bind:class="{class1:use}">
         v-bind:class指令
     </div>
 </div>

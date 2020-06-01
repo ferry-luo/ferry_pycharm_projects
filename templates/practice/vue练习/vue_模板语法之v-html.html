@@ -8,13 +8,16 @@
 </head>
 <body>
 <div id = "app">
-    <div v-html = "message"></div>
+    <!--使用 v-html 指令用于输出 html 代码：-->
+    <div v-html="message"></div>
 </div>
 <script>
     new Vue({
         el:"#app",
         data:{
-            message:'<h1>菜鸟教程</h1>'
+            "message":"<h1>菜鸟教程</h1>" +
+            "<h2>前端</h2>" +
+            "<h3>VUE</h3>"
         }
     })
 </script>

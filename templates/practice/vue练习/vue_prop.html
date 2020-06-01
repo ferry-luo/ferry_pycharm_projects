@@ -8,14 +8,14 @@
 <body>
 <div id = "app">
     <ol>
-        <my_li v-for = "item in sites" v-bind:todo = "item"></my_li>
+        <my_li v-for="item in sites" v-bind:todo="item"></my_li>
     </ol>
 </div>
 <script>
     //注册
-    Vue.component('my_li',{
-        props:['todo'],
-        template:'<li>{{todo.text}}</li>'
+    Vue.component("my_li",{
+        props:["todo"],
+        template:"<li>{{todo.text}}</li>"
     });
     //创建根实例
     new Vue({

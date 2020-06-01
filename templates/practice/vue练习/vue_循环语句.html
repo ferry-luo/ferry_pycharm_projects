@@ -10,7 +10,7 @@
 <div id = "app">
     <ul>
         <!--sites 是源数据数组并且 site 是数组元素迭代的别名-->
-       <li v-for = "site in sites">
+       <li v-for="site in sites">
            {{site.name}}
        </li>
     </ul>
@@ -18,7 +18,7 @@
 
 <div id = "app2">
     <ul>
-        <li v-for = "v in obj">
+        <li v-for="v in obj">
             {{v}}
         </li>
     </ul>
@@ -26,7 +26,7 @@
 
 <div id = "app3">
     <ul>
-        <li v-for = "(v,k) in obj">
+        <li v-for="(k,v) in obj">
             {{k}}:{{v}}
         </li>
     </ul>
@@ -34,7 +34,7 @@
 
 <div id = "app4">
     <ul>
-        <li v-for = "n in 10">
+        <li v-for="n in 10">
             {{n}}
         </li>
     </ul>

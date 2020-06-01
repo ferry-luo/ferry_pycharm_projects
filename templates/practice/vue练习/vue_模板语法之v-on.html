@@ -9,7 +9,8 @@
 <body>
 <div id = "app">
     <p>{{message}}</p>
-    <button v-on:click = "reverse_message">反转字符串</button>
+    <!--v-on 指令，它用于监听 DOM 事件-->
+    <button v-on:click="reverse_message()">反转字符串</button>
 </div>
 <script>
     new Vue({
@@ -18,10 +19,11 @@
             message:'apple'
         },
         methods:{
-            reverse_message:function(){
-                this.message = this.message.split('').reverse().join('');
+            reverse_message:function () {
+                this.message = this.message.split("").reverse().join("");
             }
         }
+
     })
 </script>
 </body>

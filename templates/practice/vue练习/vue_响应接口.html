@@ -8,7 +8,7 @@
 <body>
 <div id = "app">
     <p style = "font-size:25px;">价格：{{products.price}}</p>
-    <button v-on:click = "increase" style = "font-size:25px;">点我</button>
+    <button v-on:click="increase()" style = "font-size:25px;">点我</button>
 </div>
 
 <script>
@@ -36,9 +36,10 @@
     Vue.delete(my_product,'shop_name');
     console.log(vm);
     //我们通过使用 $watch 属性来实现数据的监听，$watch 必须添加在 Vue 实例之外才能实现正确的响应。
-    vm.$watch('products.shop_id',function(new_value,old_value){
+    vm.$watch("products.shop_id",function (new_value,old_value) {
         alert("计数变化：" + old_value + "变为" + new_value);
-    })
+    });
+
 </script>
 </body>
 </html>

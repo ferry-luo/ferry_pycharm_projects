@@ -18,16 +18,16 @@
 <body>
 <div id = "app">
     <!--可以使用数组将多个样式对象应用到一个元素上：-->
-    <div v-bind:style = "[style_1,style_2]">菜鸟教程</div>
+    <div v-bind:style="[style_1,style_2]">菜鸟教程</div>
 </div>
 
 <div id = "app2">
     <!--我们可以在 v-bind:style 直接设置样式：-->
-    <div v-bind:style = "{color:style_color,fontSize:style_fontsize + 'px'}">百度啊</div>
+    <div v-bind:style="{color:style_color,fontSize:style_fontsize + 'px'}">百度啊</div>
 </div>
 
 <div id = "app3">
-    <div v-bind:class = "obj">搜狗</div>
+    <div v-bind:class="obj">搜狗</div>
 </div>
 <script>
     new Vue({
