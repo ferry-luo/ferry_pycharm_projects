@@ -18,10 +18,10 @@
 
 <script>
     var app = angular.module('myApp', []);
-    app.controller('myCtrl', function ($scope, $http) {
-        $http.get("https://www.runoob.com/welcome.html").then(function (res) {
-            $scope.myWelcom = res.data;
-        });
+    app.controller("myCtrl",function ($scope,$http) {
+        $http.get("https://www.runoob.com/welcome").then(function (res) {
+            $scope.myWelcome = res.data;
+        })
     });
 </script>
 

@@ -14,15 +14,15 @@
 <script>
     $(function () {
         $("button").click(function () {
-            alert("div宽度，不包括内边距、边框或外边距：" + $("#div1").width() + "\n"
-            + "div高度，不包括内边距、边框或外边距：" + $("#div1").height());
+            alert("width() 方法设置或返回元素的宽度（不包括内边距、边框或外边距）div宽度，不包括内边距、边框或外边距：" + $("#div1").width() + "\n"
+            + "height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）div高度，不包括内边距、边框或外边距：" + $("#div1").height());
 
             var t = "";
             t += "div宽度，包括内边距：" + $("#div1").innerWidth() + "<br>";
             t += "div高度，包括内边距：" + $("#div1").innerHeight() + "<br>";
             t += "div宽度，包括内边距和边框：" + $("#div1").outerWidth() + "<br>";
             t += "div高度，包括内边距和边框" + $("#div1").outerHeight() + "<br>";
-            $("#div1").html(t);
+            $("#p1").html(t);
         });
     })
 </script>

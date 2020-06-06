@@ -24,14 +24,17 @@
 
 <script>
     $(function () {
-        $("#flip_content").click(function () {
+        $("#flip_up_content").click(function () {
             $("#panel_content").slideUp(1500);
         });
         $("#flip_down_content").click(function () {
             $("#panel_content").slideDown(1500);
         });
         $("#flip_content").click(function () {
-            $("#panel_content").slideToggle(2000);
+            //第一个参数规定效果的时长，第二个参数是滑动完成后执行的函数名称
+            $("#panel_content").slideToggle(2000,function () {
+                window.alert("滑动效果结束")
+            });
         });
     })
 </script>

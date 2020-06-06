@@ -11,7 +11,7 @@
 <button id="btn2">显示 HTML</button>
 <p>名称: <input type="text" id="input_content" value="菜鸟教程"></p>
 <button id="btn3">显示值</button>
-<p><a href="//www.runoob.com" id="href_runoob">菜鸟教程</a></p>
+<p><a href="http://www.runoob.com" id="href_runoob">菜鸟教程</a></p>
 <button id="btn4">显示 href 属性的值</button>
 
 <script>
@@ -24,13 +24,20 @@
             alert("HTML为：" + $("#test").html());
         });
         $("#btn3").click(function () {
-            alert("输入框的值为：" + $("#input_content").val());
+            alert("输入框中值为：" + $("#input_content").val());
         });
         //获取属性 - attr()
         $("#btn4").click(function () {
             alert("href属性值为：" + $("#href_runoob").attr("href"));
         });
     })
+
+    /*
+    三个简单实用的用于 DOM 操作的 jQuery 方法：
+text() - 设置或返回所选元素的文本内容
+html() - 设置或返回所选元素的内容（包括 HTML 标记）
+val() - 设置或返回表单字段的值
+     */
 </script>
 </body>
 </html>

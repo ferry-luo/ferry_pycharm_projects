@@ -23,13 +23,13 @@
         //而使用 methods ，在重新渲染的时候，函数总会重新调用执行。
         //可以说使用 computed 性能会更好，但是如果你不希望缓存，你可以使用 methods 属性。
         computed:{
-            reversed_mes_1:function(){
-                return this.message.split('').reverse().join('');
+            reversed_mes_1:function () {
+                return this.message.split("").reverse().join("");
             }
         },
         methods:{
-            reversed_mes_2:function(){
-                return this.message.split('').reverse().join('');
+            reversed_mes_2:function () {
+                return this.message.split("").reverse().join("");
             }
         }
     })

@@ -10,14 +10,14 @@
 <!--ng-init 指令初始化应用程序数据。-->
 
 <!--ng-model 指令把元素值（比如输入域的值）绑定到应用程序。-->
-<div data-ng-app="" data-ng-init="quantity=1;price=5">
+<div ng-app="" ng-init="quantity=1;price=5">
 
     <h2>价格计算器</h2>
 
     数量: <input type="number" ng-model="quantity">
     价格: <input type="number" ng-model="price">
 
-    <p><b>总价:</b> {{quantity * price}}</p>
+    <p><b>总价:</b>{{quantity*price}}</p>
 
 </div>
 

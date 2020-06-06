@@ -5,15 +5,15 @@
     <title>jQuery_操作CSS</title>
     <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
     <style>
-        .blue{
+        .myblue{
             color:blue;
         }
     </style>
 </head>
 <body>
-<h1 class="blue">标题 1</h1>
-<h2 class="blue">标题 2</h2>
-<p class="blue">这是一个段落。</p>
+<h1 class="myblue">标题 1</h1>
+<h2 class="myblue">标题 2</h2>
+<p class="myblue">这是一个段落。</p>
 <p>这是另外一个段落。</p>
 <div>这是一些重要的文本!</div>
 <br>
@@ -25,15 +25,15 @@
     $(function () {
         //添加 class 属性
         $("#btn1").click(function () {
-            $("h1,h2,p").addClass("blue");
+            $("h1,h2,p").addClass("myblue");
         });
         //删除指定的 class 属性
         $("#btn2").click(function () {
-            $("body h1:first").removeClass("blue");
+            $("body h1:first").removeClass("myblue");
         });
         //对被选元素进行添加/删除类的切换操作：
         $("#btn3").click(function () {
-            $("h1,h2,p").toggleClass("blue");
+            $("h1,h2,p").toggleClass("myblue");
         })
     })
 </script>

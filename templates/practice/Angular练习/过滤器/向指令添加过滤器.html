@@ -10,6 +10,7 @@
 
     <p>循环对象:</p>
     <ul>
+        <!--orderBy 过滤器根据表达式排列数组-->
         <li ng-repeat="x in names | orderBy:'country'">
             {{ x.name + ', ' + x.country }}
         </li>
@@ -17,7 +18,7 @@
 
 </div>
 
-<script src="//www.runoob.com/try/demo_source/namesController.js"></script>
+<script src="namesController.js"></script>
 
 </body>
 </html>

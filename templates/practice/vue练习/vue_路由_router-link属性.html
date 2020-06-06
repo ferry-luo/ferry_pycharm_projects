@@ -9,33 +9,45 @@
         .diff_color{
             background-color:yellow;
         }
+        ._active{
+            background-color:yellow;
+        }
     </style>
 </head>
 <body>
 <div id = "app">
     <h1>hello</h1>
     <p>
-        <router-link to = "/sougou" replace>go sougou</router-link>
-        <router-link to = "/biying" append>go biying</router-link>
-        <router-link to = "/baidu" tag = "li">go biying</router-link>
-        <router-link to = "/google" active-class = "diff_color">go biying</router-link>
+        <!--设置 replace 属性的话，当点击时，会调用 router.replace() 而不是 router.push()，导航后不会留下 history 记录。-->
+        <router-link to="/sougou" replace>go sougou</router-link>
+        <!--设置 append 属性后，则在当前 (相对) 路径前添加基路径。例如，我们从 /a 导航到一个相对路径 b，如果没有配置 append，则路径为 /b，如果配了，则为 /a/b-->
+        <router-link to="/biying" append>go biying</router-link>
+        <!--有时候想要 <router-link> 渲染成某种标签，例如 <li>。 于是我们使用 tag prop 类指定何种标签-->
+        <router-link to = "/baidu" tag = "li">go baidu</router-link>
+        <!--设置 链接激活时使用的 CSS 类名。-->
+        <router-link to="/google" active-class="diff_color">go google</router-link>
+        <br>
+        <!--配置当链接被精确匹配的时候应该激活的 class。可以通过以下代码来替代。-->
+        <router-link v-bind:to="{path:'runoob'}" exact-active-class="_active">xxx link</router-link>
     </p>
     <router-view></router-view>
 </div>
 
 <script>
     //1.定义组件
-    const MySougou = {template:'<div>sougou</div>'};
-    const MyBiying = {template:'<div>biying</div>'};
-    const MyBaidu = {template:'<div>biying</div>'};
-    const MyGoogle = {template:'<div>biying</div>'}
+    const MySougou = {template:"<div>搜狗</div>"};
+    const MyBiying = {template:"<div>必应</div>"};
+    const MyBaidu = {template:"<div>百度</div>"};
+    const MyGoogle = {template:"<div>谷歌</div>"};
+    const MyRunoob = {template:"<div>菜鸟</div>"};
 
     //2.定义路由
     const r = [
-        {path:'/soutou',component:MySougou},
+        {path:'/sougou',component:MySougou},
         {path:'/biying',component:MyBiying},
         {path:'/baidu',component:MyBaidu},
-        {path:'/google',component:MyGoogle}
+        {path:'/google',component:MyGoogle},
+        {path:"/runoob",component:MyRunoob}
     ];
 
     //3.创建路由实例
@@ -46,7 +58,7 @@
     //4.创建、挂载根实例
     const app_example = new Vue({
         router:r_example
-    }).$mount('#app');
+    }).$mount("#app")
 
 </script>
 </body>

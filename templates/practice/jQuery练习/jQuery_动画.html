@@ -27,26 +27,29 @@
         $("#animate2").click(function () {
             //使用预定义的值。动画值设置为 "show"、"hide" 或 "toggle"
             $("#text2").animate({
-                height:'toggle'
+                height:"toggle"
             })
         });
         $("#animate3").click(function () {
             //使用队列功能。编写多个 animate() 调用，jQuery 会创建包含这些方法调用的"内部"队列。然后逐一运行这些 animate 调用。
-            $("text3").animate({
-                height:'300px',
-                opacity:'0.4'
+            $("#text3").animate({
+                height:"300px",
+                opacity:"0.4"
             },"slow");
             $("#text3").animate({
-                width:'300px',
-                opacity:'0.8'
+                height:"300px",
+                opacity:"0.8"
             },"slow");
             $("#text3").animate({
-                height:'100px',
-                opacity:'0.8'
-            },"slow");
+                height:"100px",
+                opacity:"0.8"
+            },"fast");
             $("#text3").animate({
-                fontSize:'3em'
-            },1000);
+                height:"100px",
+                fontSize:"26px"
+            },1000,function () {
+                window.alert("动画已依次完成");
+            })
         })
     })
 </script>

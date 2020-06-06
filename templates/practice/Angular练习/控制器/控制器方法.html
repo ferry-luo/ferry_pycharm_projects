@@ -8,20 +8,20 @@
 
 <div ng-app="myApp" ng-controller="personCtrl">
 
-    名: <input type="text" ng-model="FirstName"><br>
-    姓: <input type="text" ng-model="LastName"><br>
+    名: <input type="text" ng-model="firstName"><br>
+    姓: <input type="text" ng-model="lastName"><br>
     <br>
-    姓名: {{FullName()}}
+    姓名: {{fullName()}}
 
 </div>
 
 <script>
     var app = angular.module('myApp', []);
     app.controller('personCtrl', function ($scope) {
-        $scope.FirstName = "John";
-        $scope.LastName = "Doe";
-        $scope.FullName = function () {
-            return $scope.FirstName + " " + $scope.LastName;
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+        $scope.fullName = function () {
+            return $scope.firstName + " " + $scope.lastName;
         }
     });
 </script>

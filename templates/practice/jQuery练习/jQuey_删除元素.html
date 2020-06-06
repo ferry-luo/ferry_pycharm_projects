@@ -23,8 +23,8 @@
     $(function () {
         $("#btn1").click(function () {
             //remove() 方法删除被选元素及其子元素。
-            //删除 class="italic" 的所有 <p> 元素：
-            $("p").remove(".italic");
+            //删除 class="italic" 的所有元素及其子元素：
+            $(".italic").remove();
         });
         $("#btn2").click(function () {
             //empty() 方法删除被选元素的子元素。

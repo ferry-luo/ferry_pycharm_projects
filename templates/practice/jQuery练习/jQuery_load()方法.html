@@ -23,11 +23,18 @@
         可选的 callback 参数是 load() 方法完成后所执行的函数名称。
         */
         $("button").click(function () {
-            $("#div1").load("https://www.runoob.com/try/ajax/demo_test.txt");
+            $("#div1").load("http://" + window.location.host + ':8000/go_vue_ajax_handle_get?event_id=1',function () {
+                window.alert("获取成功")
+            });
         });
         //把 "demo_test.txt" 文件中 id="p1" 的元素的内容，加载到指定的 <div> 元素中
         $("button").click(function () {
-            $("#div2").load("https://www.runoob.com/try/ajax/demo_test.txt #p1");
+            $("#div2").load("http://" + window.location.host + ':8000/go_vue_ajax_handle_post', {
+                "event_id": 1,
+                "event_name": "小米"
+            },function () {
+                window.alert("获取成功")
+            });
         });
     })
 </script>

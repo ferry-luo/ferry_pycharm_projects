@@ -17,12 +17,12 @@
     app.controller('myCtrl', function ($scope) {
         $scope.msg = "ferry";
     });
-    //自定义过滤器
-    app.filter('rev',function () {
+    //自定义一个过滤器，用来将字符串反转
+    app.filter("rev",function () {
         return function (text) {
             return text.split("").reverse().join("");
         }
-    })
+    });
 </script>
 
 </body>

@@ -23,14 +23,14 @@
         可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
          */
         $("#hide").click(function () {
-            $("#p1").hide(1000);
+            $("#p1").hide("slow");
         });
         $("#show").click(function () {
-            $("#p1").show(1000);
+            $("#p1").show(2000);
         });
         //使用 toggle() 方法来切换 hide() 和 show() 方法。
         $("button").click(function () {
-            $("#p8").toggle();
+            $("#p8").toggle("fast");
         })
     })
 </script>

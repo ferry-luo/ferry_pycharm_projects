@@ -32,27 +32,27 @@
         $("#btn3").click(function () {
             $("#test3").val("义薄云天");
         });
-
         $("#btn4").click(function () {
             //回调函数有两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
             $("#test4").text(function (i,old_content) {
-                return "旧的：" + old_content + "。新的：" + "新内容。被选元素列表中当前元素的下标为" + i;
-            })
+                return "旧的：" + old_content + "。新的：" + "新内容啊。被选元素列表中当前元素的下标为" + i;
+            });
         });
 
         $("#btn5").click(function () {
             $("#href_runoob").attr({
-                "href":"http://www.runoob.com/jquery",
+                "href":"http://www.runoob.com/jQuery",
                 "title":"标题为jQuery教程"
             });
-            // 通过修改的 title 值来修改链接名称
+            // 借助/通过修改的 title 值来修改链接名称。备注：没有方法/函数直接修改链接名称
             t = $("#href_runoob").attr("title");
             $("#href_runoob").html(t);
         });
         $("#btn6").click(function () {
+            //在旧的属性值基础上再加
             $("#href_baidu").attr("href",function (i,old_content) {
                 return old_content + "/s?wd=蔡徐坤&rsv_spt=1&rsv_iqid=0x8eb10d8500004c62&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=tb&rsv_sug3=3&rsv_sug2=0&rsv_btype=i&inputT=1926&rsv_sug4=2917";
-            })
+            });
         })
     })
 </script>
