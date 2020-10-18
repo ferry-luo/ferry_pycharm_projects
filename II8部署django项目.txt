@@ -1,0 +1,59 @@
+﻿1. 可运行的django网站
+首先确保自己的django网站在服务器上可以通过命令行 runserver 正常运行。
+
+2. IIS配置
+添加角色与功能
+在服务器管理器中，添加角色与功能
+添加角色与功能，其中CGI组件必须安装。
+
+3. Python安装wfastcgi模块
+在python的Scripts目录下pip安装wfastcgi模块
+	pip install wfastcgi -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+4. 项目文件处理
+在python的Lib\site-packages目录下，找到wfastcgi.py文件，并将其复制到你的django项目根目录下。
+
+5. 配置网站
+进入IIS管理器后，添加网站
+填写相关参数
+进入你建立的站点，选择处理程序映射。请注意，必须进入你指定的网站里面，再添加模块映射，否则，映射会添加到你所有的网站里。
+添加模块映射。模块选择FastCgiModule，如果前面没有安装这个模块，请先安装哦。可执行文件对于本项目来说，实际上是必填的。此例中，C:\Anaconda3\python.exe|C:\inetpub\wwwroot\PowerX\wfastcgi.py。前面是python的路径，后面是wfastcgi.py文件的路径。实际上，如果wfastcgi.py文件路径直接引用python\Lib\site-packages目录下的文件也可以，不过就不可以部署多个Django网站了。
+填写完参数后，选择请求控制，设置如图
+确认添加后，程序映射添加成功
+返回IIS主页，进入FastCGI设置
+选中新建的FastCGI应用程序，修改环境变量
+需要添加的变量有3个：
+Name: WSGI_HANDLER
+Value: django.core.wsgi.get_wsgi_application()
+
+Django项目目录
+Name: PYTHONPATH
+Value: C:\inetpub\wwwroot\PowerX
+
+项目settings.py文件的位置
+Name: DJANGO_SETTINGS_MODULE
+Value: powerx.settings
+
+至此，一个不带static静态文件的Django项目就可以在服务器上运行啦！！！
+
+静态文件配置
+	生成生产模式下静态文件目录	python mange.py collectstatic
+	站点 > 处理程序映射 > 添加模块映射配置StaticFileModule
+为了让静态文件的处理不经过Python这一层，建议往static和media目录下各放一个web.config文件，内容都是：
+
+<?xml version="1.0" encoding="UTF-8"?>
+    <configuration>
+      <system.webServer>
+      <!-- this configuration overrides the FastCGI handler to let IIS serve the static files -->
+      <handlers>
+        <clear/>
+   <add name="StaticFile" path="*" verb="*" modules="StaticFileModule" resourceType="File" requireAccess="Read" />
+     </handlers>
+   </system.webServer>
+</configuration>
+
+HTTP 错误 500.19 Internal Server Error
+出现这样的情况是因为IIS7之后的版本都采用了更安全的 web.config 管理机制，默认情况下会锁住配置项不允许更改。我们把它解锁了就OK。
+打开CMD，在里面依次输入下面两个命令：
+%windir%\system32\inetsrv\appcmd unlock config -section:system.webServer/handlers 
+%windir%\system32\inetsrv\appcmd unlock config -section:system.webServer/modules

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_模板语法之过滤器</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <style>
+        .order_status {
+            font-size: 14px;
+        }
+        .not-pay {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--过滤器可以串联-->
+    {{message | capitalize_1 | capitalize_2(0,4)}}
+    <br>
+    需求来了，当订单未付款时，表示状态的文字应该为红色。就是当状态为 待付款 时，文字要为红色！这个问题曾经困扰了有一段时间，用了各种办法，虽然也是实现了需求，但终归不太优雅。直到最近在翻看 vue 文档，才想起来有串联过滤器的用法，可以完美解决这个需求
+    <span class="order_status" v-bind:class="orderItem.status | getOrderStatus | getOrderStatusClass">{{orderItem.status | getOrderStatus}}</span>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            message: 'baidu',
+            orderItem:{
+                status:1,
+                order_code:"202005310832",
+                good_list:["帽子","裤子"],
+                address_info:{
+                    telephone:13838652525,
+                    address:"广州市白云区"
+                }
+            }
+        },
+        //自定义局部过滤器
+        filters: {
+            capitalize_1: function (value) {
+                if (!value) {
+                    alert('值不合法');
+                    return
+                }
+                v = value.toString();
+//                charAt() 方法用于返回指定索引处的字符。索引范围为从 0 到 length() - 1。
+                return v.charAt(0).toUpperCase() + v.slice(1);  //返回Baidu
+            },
+            capitalize_2: function (value, start, end) {
+                if (!value) {
+                    alert('值不合法');
+                    return
+                }
+                v = value.toString();
+//                slice(start,end) 方法可从已有的数组中返回选定的元素，左闭右开。
+                return "slice() 方法可从已有的数组中返回选定的元素" + "," + v.slice(start, end) + "娘";
+            },
+            getOrderStatus:function (the_status) {
+                switch(the_status.toString()){
+                    case "1":
+                        return "待付款";
+                    case "2":
+                        return "待发货";
+                    case "3":
+                        return "待收货";
+                }
+            },
+            getOrderStatusClass:function (the_status) {
+                if(the_status === "待付款"){
+                    return "not-pay";
+                }
+                return ""
+            }
+        }
+    })
+</script>
+</body>
+</html>

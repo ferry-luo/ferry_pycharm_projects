@@ -1,0 +1,26 @@
+﻿找到openssl.exe文件，双击打开指令窗口，输入如下指令进行配置，每执行一条指令，均需要配置相关参数，随意填写均可
+genrsa -des3 -out server.key 2048
+req -new -key server.key -out server.csr -config openssl.cnf
+rsa -in server.key -out server_no_passwd.key
+x509 -req -days 365 -in server.csr -signkey server_no_passwd.key -out server.crt
+
+ (1)将.pfx格式的证书转换为.pem文件格式： windows2003下不需要敲openssl
+ 	openssl pkcs12 -in  4597194_ferry1119.com.pfx -nodes -out 4597194_ferry1119.com.pem
+	输入密码：密码在C:\ferry_pycharm_projects\4597194_ferry1119.com_iis\pfx-password中
+ (2)从.pem文件中导出私钥server.key：　windows2003下不需要敲openssl
+	openssl  rsa -in 4597194_ferry1119.com.pem -out 4597194_ferry1119.com.key
+ (3)从.pem文件中导出证书server.crt　windows2003下不需要敲openssl
+	openssl x509 -in  4597194_ferry1119.com.pem -out 4597194_ferry1119.com.crt
+
+django配置
+下载配置ssl证书所需模块
+pip3 install django-extensions -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 install django-werkzeug-debugger-runserver -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 install pyOpenSSL -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+配置INSTALLED_APPS 新增
+‘werkzeug_debugger_runserver’,
+‘django_extensions’,
+
+重启服务
+python manage.py runserver_plus --cert 4597194_ferry1119.com.crt 0.0.0.0:8000
