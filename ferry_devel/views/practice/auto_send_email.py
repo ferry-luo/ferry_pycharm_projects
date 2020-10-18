@@ -8,10 +8,10 @@ from email.header import Header
 
 server_host = "smtp.qq.com"
 server_port = 25
-email_user = "1021164925@qq.com"
-email_password = "hsmdczfjmajfbecb"
-email_send = "1021164925@qq.com"
-email_receiver = "1021164925@qq.com"
+email_user = "xx@qq.com"
+email_password = "xx"
+email_send = "xx@qq.com"
+email_receiver = "xx@qq.com"
 
 msg = MIMEMultipart()
 msg["from"] = Header("robot","utf-8")
